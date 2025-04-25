@@ -173,9 +173,7 @@ This space provides information about the gardening tasks that are recommended t
 
     ![Create new app screenshot 1](./assets/images/read_me/deployment/dss01.png)
 
-    ------------------------------------------------------------------------
-
-    ![Create new app screenshot 2](./assets/images/read_me/deployment/dss02.png){style="border: solid, 2px;"}
+    ![Create new app screenshot 2](./assets/images/read_me/deployment/dss02.png)
 
 7.  From the `Settings`, `Config Vars` section, create a `key` of `DISABLE_COLLECTSTATIC` with `value` of `1`
 
@@ -185,11 +183,7 @@ This space provides information about the gardening tasks that are recommended t
 
     ![Deployment screenshot 1](./assets/images/read_me/deployment**/dss04.png)
 
-    ------------------------------------------------------------------------
-
     ![Deployment screenshot 2](./assets/images/read_me/deployment/dss05.png)
-
-    ------------------------------------------------------------------------
 
 9.  You may view the page once the deployment is completed.
 
