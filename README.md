@@ -147,7 +147,11 @@ A good planting planning requires plot holders to make notes about what they pla
 
 This space provides information about the gardening tasks that are recommended to take place in each month.
 
-## Data Model - Django Database Structure
+## Data Model
+
+The Django Database Structure consists of three models: User, Forum and Plant.
+
+![](./assets/images/read_me/data_model.png)
 
 ## Future Features
 
