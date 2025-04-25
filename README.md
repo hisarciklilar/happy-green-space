@@ -7,7 +7,7 @@ Happy Green Space is a web-based platform that aims to bring the following funct
 - The ability for the users to register to the platform and login
 - The ability for the users to enter and store particular information about their plot
 - The ability for the users to search and obtain information about plants
-- The ability for users to join a converstation through a platform forum
+- The ability for users to join a conversation through a platform forum
 - Regular updates of a page which provides information about the specific tasks to undertake in each month of the year.
 
 With all these functionalities, the platform target to function as a home page for allotment users.
@@ -127,3 +127,84 @@ As a **Site User** I can **get information about plants I search on the platform
 
 -   **AC4** User can see search results on screen
 
+## Existing Features
+
+The platform consists of 4 apps:
+
+### Garden Gossip Corner
+
+Allotment users usually like sharing information with others about plants and tips for success. The platform will provide users with a forum space where they communicate with each other.
+
+### WikiPlant
+
+Plot holders usually experiment with planting a variety fruit, herb or vegetables but sometimes they may not know enough about different plants, in particular when they are newbies. WikiPlant pages will allow users to search for plants and obtain information about when to plant, where, what harvest to expect, etc.
+
+### My allotment
+
+A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as keeping a wish list for the future plantations.
+
+### Tasks of the month
+
+This space provides information about the gardening tasks that are recommended to take place in each month.
+
+## Data Model - Django Database Structure
+
+## Future Features
+
+## Testing
+
+## Deploying the App on Heroku
+
+### In the local project folder:
+
+1.  Install `gunicorn` by running `pip install gunicorn~=20.1` from the terminal
+
+2.  Add this installation to the requirements file by running `pip freeze --local > requirements.txt`
+
+3.  Create a `Procfile` at the root directory of the project, declaring the process as `web` and adding a start command. The`Procfile` should then read `web: gunicorn happy_green_space.wsgi`
+
+4.  In the `happy_green_space/settings.py` set the `DEBUG` constant to `False`. Append the `'.herokuapp.com'` hostname to the `ALLOWED_HOSTS` list.
+
+5.  Update Git Repository
+
+### In the Heroku account:
+
+6.  In the Heroku account dashboard, create new app choosing Europe as the location.
+
+    ![Create new app screenshot 1](./assets/images/read_me/deployment/dss01.png)
+
+    ------------------------------------------------------------------------
+
+    ![Create new app screenshot 2](./assets/images/read_me/deployment/dss02.png){style="border: solid, 2px;"}
+
+7.  From the `Settings`, `Config Vars` section, create a `key` of `DISABLE_COLLECTSTATIC` with `value` of `1`
+
+    ![Set Config Vars screenshot](./assets/images/read_me/deployment/dss03.png)
+
+8.  In `Deploy`, after providing GitHub Repository details, click on `Deploy Branch` in the `Manual deploy` section.
+
+    ![Deployment screenshot 1](./assets/images/read_me/deployment**/dss04.png)
+
+    ------------------------------------------------------------------------
+
+    ![Deployment screenshot 2](./assets/images/read_me/deployment/dss05.png)
+
+    ------------------------------------------------------------------------
+
+9.  You may view the page once the deployment is completed.
+
+    ![Deployment completed screenshot](./assets/images/read_me/deployment/dss06.png)
+
+## Creating a Fork
+
+On GitHub, users may fork this repository by navigating to "Fork" and selecting "Create a new fork". One cannot fork from their repository. Hence, below, a screenshot of how this could be done is provided using a repository created by a different user:
+
+![](./assets/images/read_me/create_fork.png)
+
+## Cloning a Repository
+
+Users may clone this repository by navigating to "Code" and copying the clone link. This link can then be used in Gitpod or a local code editor. A screenshot of the links is provided below:
+
+![](./assets/images/read_me/clone_repository.png)
+
+(Please note this is not the only way to clone a repository)
