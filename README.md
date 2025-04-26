@@ -14,8 +14,8 @@ With all these functionalities, the platform target to function as a home page f
 
 ## App's Location
 
-- Happy Green Space Live Link: 
-  - <https://happy-green-space-94f206e157cb.herokuapp.com>
+- Happy Green Space Live Link:
+  - <https://happy-green-space-94f206e157cb.herokuapp.com/index/>
   - <https://happy-green-space-94f206e157cb.herokuapp.com/gossip_corner/>
 
 - happy-green-space GutHub Repository:
@@ -129,7 +129,11 @@ As a **Site User** I can **get information about plants I search on the platform
 
 ## Existing Features
 
-The platform consists of 4 apps:
+The platform consists of 5 apps:
+
+### Landing
+
+Landing page.
 
 ### Garden Gossip Corner
 
