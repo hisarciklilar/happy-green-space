@@ -180,6 +180,7 @@ __The FORUM Model__
 | **Key**    | **Name**  | **Type**      | **Extra Info** |
 |------------|-----------|---------------|----------------|
 | ForeignKey | username  | User Model    |                |
+|            | title     | CharField     |                |
 | PrimaryKey | post      | TextField     | blank=False    |
 |            | posted_on | DateTimeField | auto_now=True  |
 
