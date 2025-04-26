@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'garden_gossip',  # app for gardeners' forum
+    'landing',  # app for landing page
 ]
 
 MIDDLEWARE = [
