@@ -149,13 +149,58 @@ This space provides information about the gardening tasks that are recommended t
 
 ## Data Model
 
-The Django Database Structure consists of three models: User, Forum and Plant.
+The Django Database Structure consists of three models: User, Forum and Plant. This is represented by the Entry Relationship Diagram below.
 
 ![](./assets/images/read_me/data_model.png)
 
+### Database Relationships
+
+__The USER Model__
+
+| **Key**    | **Name**    | **Type**     | **Extra Info**                   |
+|------------|-------------|--------------|----------------------------------|
+| PrimaryKey | username    | CharField    | max_length=50, unique=True       |
+|            | first_name  | CharField    | max_length=50                    |
+|            | last_name   | CharField    | max_length=50                    |
+|            | email       | EmailField   | max_length=200                   |
+|            | password    | CharField    |                                  |
+|            | plot_width  | IntegerField |                                  |
+|            | plot_length | IntegerField |                                  |
+|            | location    | CharField    |                                  |
+| ForeignKey | plant       | Plant Model  |                                  |
+|            | plant_wish  | CharField    | *could be linked to Plant Model* |
+| ForeignKey | post        | Forum Model  |                                  |
+
+__The FORUM Model__
+
+| **Key**    | **Name**  | **Type**      | **Extra Info** |
+|------------|-----------|---------------|----------------|
+| ForeignKey | username  | User Model    |                |
+| PrimaryKey | post      | TextField     | blank=False    |
+|            | posted_on | DateTimeField | auto_now=True  |
+
+__The PLANT Model__
+
+| **Key**     | **Name**    | **Type**     | **Extra Info** |
+|-------------|-------------|--------------|----------------|
+| Primary Key | plant_name  | CharField    |                |
+|             | genus       | CharField    |                |
+|             | cultivar    | CharField    |                |
+|             | type        | IntegerField | choices=TYPE   |
+|             | height      | IntegerField |                |
+|             | width       | IntegerField |                |
+|             | description | TextField    |                |
+|             | image       | ImageField   |                |
+| ForeignKey  | username    | User Model   |                |
+
 ## Future Features
 
+- Analysis of the most popular plants planted by the users in a location
+- Analysis of the success rates of plants planted by users in a location
+   
 ## Testing
+
+*To be added*
 
 ## Deploying the App on Heroku
 
