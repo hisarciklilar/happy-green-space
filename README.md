@@ -5,9 +5,9 @@
 Happy Green Space is a web-based platform that aims to bring the following functionalities together in one space:
 
 - The ability for the users to register to the platform and login
-- The ability for the users to enter and store particular information about their plot
+- The ability for the users to enter and store particular information about their plot and what plants they have planted.
 - The ability for the users to search and obtain information about plants
-- The ability for users to join a conversation through a platform forum
+- The ability for users to join a conversation through a platform forum. 
 - Regular updates of a page which provides information about the specific tasks to undertake in each month of the year.
 
 With all these functionalities, the platform target to function as a home page for allotment users.
@@ -129,27 +129,24 @@ As a **Site User** I can **get information about plants I search on the platform
 
 ## Existing Features
 
-The platform consists of 5 apps:
+The platform curently consists of 3 apps:
+- Users
+- Forum
+- Plants
 
-### Landing
+The Users app has the functionality of user registration and login
 
-Landing page.
+The Forum app allows users to post in the forum and also reply to others' posts
 
-### Garden Gossip Corner
+The Plants app allows users to create a list of plants they planted, takes notes about the plant also state whether or not they are happy with the outcome. 
 
-Allotment users usually like sharing information with others about plants and tips for success. The platform will provide users with a forum space where they communicate with each other.
+### Forum
 
-### WikiPlant
+This is the space for garden gossip! Allotment users usually like sharing information with others about plants and tips for success. The platform will provide users with a forum space where they communicate with each other.
 
-Plot holders usually experiment with planting a variety fruit, herb or vegetables but sometimes they may not know enough about different plants, in particular when they are newbies. WikiPlant pages will allow users to search for plants and obtain information about when to plant, where, what harvest to expect, etc.
+### Plants
 
-### My allotment
-
-A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as keeping a wish list for the future plantations.
-
-### Tasks of the month
-
-This space provides information about the gardening tasks that are recommended to take place in each month.
+A good planting planning requires plot holders to make notes about what they planted and where. HAnd-written notes are likely to get lost or take time to organize. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as taking notes about their plants and mark whether or not the plant grew well.  
 
 ## Data Model
 
@@ -199,6 +196,20 @@ __The PLANT Model__
 | ForeignKey  | username    | User Model   |                |
 
 ## Future Features
+
+### WikiPlant
+
+Plot holders usually experiment with planting a variety fruit, herb or vegetables but sometimes they may not know enough about different plants, in particular when they are newbies. WikiPlant pages will allow users to search for plants and obtain information about when to plant, where, what harvest to expect, etc.
+
+### My allotment
+
+A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform may provide plot holders with a digital representation of their allotment space where they can mark on the digital allotment map what plants are planted, where. 
+
+### Tasks of the month
+
+This space provides information about the gardening tasks that are recommended to take place in each month.
+
+### Integration of Predictive Algorithms
 
 - Analysis of the most popular plants planted by the users in a location
 - Analysis of the success rates of plants planted by users in a location
