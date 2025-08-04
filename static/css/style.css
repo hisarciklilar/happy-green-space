@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f3f7f2;
+    color: #2f4f2f;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #d1e7dd;
+    border-bottom: 2px solid #b2c8b2;
+}
+
+.navbar .navbar-brand {
+    color: #2e4e1f;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.navbar .nav-link {
+    color: #3c5d2e;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+    color: #285c2c;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #2f4f2f;
+    color: #fff;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.card {
+    border: 1px solid #d9e8d9;
+    background-color: #ffffff;
+}
+
+.card-title {
+    color: #2c5d33;
+}
+
+.btn-outline-success {
+    color: #285c2c;
+    border-color: #285c2c;
+}
+
+.btn-outline-success:hover {
+    background-color: #285c2c;
+    color: white;
+}
