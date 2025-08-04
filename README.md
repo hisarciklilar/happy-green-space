@@ -15,8 +15,7 @@ With all these functionalities, the platform target to function as a home page f
 ## App's Location
 
 - Happy Green Space Live Link:
-  - <https://happy-green-space-94f206e157cb.herokuapp.com/index/>
-  - <https://happy-green-space-94f206e157cb.herokuapp.com/gossip_corner/>
+  - <https://happy-green-space-94f206e157cb.herokuapp.com>
 
 - happy-green-space GutHub Repository:
   - <https://github.com/hisarciklilar/happy-green-space>
@@ -267,3 +266,7 @@ Users may clone this repository by navigating to "Code" and copying the clone li
 ![](./assets/images/read_me/clone_repository.png)
 
 (Please note this is not the only way to clone a repository)
+
+## Acknowledgements
+
+- ChatGPT for error identification and solutions while workign on the forum_home.html file. 
