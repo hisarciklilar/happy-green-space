@@ -270,3 +270,4 @@ Users may clone this repository by navigating to "Code" and copying the clone li
 ## Acknowledgements
 
 - ChatGPT for error identification and solutions while workign on the forum_home.html file. 
+- Leaves pattern used at the background is downloaded from <https://www.toptal.com/designers/subtlepatterns/leaves/>

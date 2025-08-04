@@ -6,6 +6,13 @@ body {
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .navbar {
     background-color: #d1e7dd;
     border-bottom: 2px solid #b2c8b2;
@@ -28,7 +35,7 @@ body {
 }
 
 footer {
-    background-color: #2f4f2f;
+    background-color: #4a7757;
     color: #fff;
     padding: 1rem 0;
     font-size: 0.9rem;
@@ -51,4 +58,15 @@ footer {
 .btn-outline-success:hover {
     background-color: #285c2c;
     color: white;
+}
+
+main {
+    flex: 1;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: url('../images/leaves.png') repeat;
+    background-color: #f3f7f2; /* fallback color */
+    color: #2f4f2f;
 }
