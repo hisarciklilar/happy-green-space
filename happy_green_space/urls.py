@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from garden_gossip.views import gossip_corner
-#from landing.views import index
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('gossip_corner/', gossip_corner, name='gossip_corner'),
-    #path('index/', index, name='index'),
+    path('', include('forum.urls'), name='forum-url'),
+#    path('', include('plants.urls'), name='plants-url'),
+#    path('', include('main.urls'), name='main-url'),
 ]
+
