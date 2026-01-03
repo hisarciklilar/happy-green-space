@@ -24,7 +24,9 @@
             <a class="navbar-brand" href="/">Happy Green Space</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Forum</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'main:about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'forum:post_list' %}">Forum</a></li>
                     <!-- Add other links here later -->
                 </ul>
             </div>
