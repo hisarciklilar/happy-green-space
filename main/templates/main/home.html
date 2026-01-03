@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+{% block title %}Home | Happy Green Space {% endblock %}
+{% block content %}
+<!-- <h1>Welcome to Happy Green Space 🌱</h1>
+<p>Your growing community.</p> -->
+
+<div class="p-4 p-md-5 mb-4 bg-light rounded">
+    <h1 class="display-6">Welcome to Happy Green Space</h1>
+    <p class="lead mb-0">
+      Track what you plant and harvest, keep notes, and ask questions in the community forum.
+    </p>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5">My Garden</h2>
+          <p>Record plantings, notes, and yield.</p>
+          <a class="btn btn-success" href="#">Go to dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5">Forum</h2>
+          <p>Ask questions and share advice.</p>
+          <a class="btn btn-outline-success" href="{% url 'forum:post_list' %}">View forum</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5">About</h2>
+          <p>Learn what the platform is for and how it works.</p>
+          <a class="btn btn-outline-secondary" href="{% url 'main:about' %}">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
