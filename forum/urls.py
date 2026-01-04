@@ -6,5 +6,5 @@ app_name = 'forum'
 urlpatterns = [
     path('', PostList.as_view(), name='post_list'),
 #    path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
-    path('post/<int:pk>/', PostDetail.as_view(), name='post_detail'),
+    path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
 ]

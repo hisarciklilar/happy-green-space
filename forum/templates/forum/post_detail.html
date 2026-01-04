@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+{% block title %}{{ post.title }} | Forum{% endblock %}
+
+{% block content %}
+  <article class="mb-4">
+    <h1 class="h4">{{ post.title }}</h1>
+    <p class="text-muted">
+      By {{ post.author.username }} · {{ post.created_on|date:"j M Y, H:i" }}
+    </p>
+    <div class="card">
+      <div class="card-body">
+        {{ post.content|linebreaks }}
+      </div>
+    </div>
+  </article>
+
+  <section>
+    <h2 class="h5">Replies ({{ replies|length }})</h2>
+
+    {% if replies %}
+      {% for reply in replies %}
+        <div class="card mb-2">
+          <div class="card-body">
+            <p class="mb-1">{{ reply.body|linebreaks }}</p>
+            <small class="text-muted">
+              {{ reply.author.username }} · {{ reply.created_on|date:"j M Y, H:i" }}
+            </small>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No replies yet.</p>
+    {% endif %}
+  </section>
+{% endblock %}
