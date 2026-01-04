@@ -6,3 +6,6 @@ def home(request):
 
 def about(request):
     return render(request, 'main/about.html')
+
+def tasks_january(request):
+    return render(request, 'main/tasks_january.html')

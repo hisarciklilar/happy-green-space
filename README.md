@@ -5,7 +5,7 @@
 Happy Green Space is a web-based platform that aims to bring the following functionalities together in one space:
 
 - The ability for the users to register to the platform and login
-- The ability for the users to enter and store particular information about their plot and what plants they have planted.
+- The ability for the users to enter and store particular information about their plot/garden and what plants they have planted.
 - The ability for the users to search and obtain information about plants
 - The ability for users to join a conversation through a platform forum. 
 - Regular updates of a page which provides information about the specific tasks to undertake in each month of the year.
@@ -130,14 +130,25 @@ As a **Site User** I can **get information about plants I search on the platform
 
 The platform curently consists of 3 apps:
 - Users
+- Main
 - Forum
 - Plants
 
 The Users app has the functionality of user registration and login
 
+The Main app hosts the static pages such as the base template, the homepage, the about page, and the taks of the month page. 
+
 The Forum app allows users to post in the forum and also reply to others' posts
 
 The Plants app allows users to create a list of plants they planted, takes notes about the plant also state whether or not they are happy with the outcome. 
+
+### Main
+
+The static pages hosted in the main app include: 
+
+- home : This is the home page for the platform. It provides breif information about the functionality of the platform and provides links to other pages and apps.  
+- about : Provides brief information abour the Happy Green Space platform
+- tasks for the month: this page currently provides information about the nature in January and gardening tasks to undertake in this month. It is currently provided as a placeholder for further development. Links for each month will be added at later stages. This space can also later be converted into blog type model where users can contribute with blogs on monthly tasks or community activities.  
 
 ### Forum
 
@@ -145,11 +156,16 @@ This is the space for garden gossip! Allotment users usually like sharing inform
 
 ### Plants
 
-A good planting planning requires plot holders to make notes about what they planted and where. HAnd-written notes are likely to get lost or take time to organize. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as taking notes about their plants and mark whether or not the plant grew well.  
+A good planting planning requires plot holders to make notes about what they planted and where. Hand-written notes are likely to get lost or take time to organize. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as taking notes about their plants and mark whether or not the plant grew well.  
+
+## Templates 
+
+Templates are organised within individual Django apps to maintain a clear seperation and transferability. 
+The core `main` app provides the base layot and statis pages, which are then extended by feature-specific apps. 
 
 ## Data Model
 
-The Django Database Structure consists of three models: User, Forum and Plant. This is represented by the Entry Relationship Diagram below.
+The Django Database Structure consists of three models: `User`, `Forum` and `Plant`. This is represented by the Entry Relationship Diagram below.
 
 ![](./assets/images/read_me/data_model.png)
 
@@ -269,5 +285,11 @@ Users may clone this repository by navigating to "Code" and copying the clone li
 
 ## Acknowledgements
 
-- ChatGPT for error identification and solutions while workign on the forum_home.html file. 
+- ChatGPT for error identification and potential solutions while working on the platform.
+- ChatGPT for creation of text about tasks to undertake in January (`tasks_january.html`) file. 
 - Leaves pattern used at the background is downloaded from <https://www.toptal.com/designers/subtlepatterns/leaves/>
+
+## References
+- Severence, C. (n.d.) Django for Everybody. Online course available from <https://www.dj4e.com>
+- Vincent, W.S. (2025) Django for Beginners, 5th ed. Still River Press. 
+- Vincent, W.S. (2025) Django for Professionals, 5th ed. Available from <https://learndjango.com/courses/django-for-professionals/> with subscription. 

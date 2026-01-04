@@ -7,6 +7,7 @@
 <div class="p-4 p-md-5 mb-4 bg-light rounded">
     <h1 class="display-6">Welcome to Happy Green Space</h1>
     <p class="lead mb-0">
+      This is your growing gardening community. 
       Track what you plant and harvest, keep notes, and ask questions in the community forum.
     </p>
   </div>
@@ -27,7 +28,7 @@
         <div class="card-body">
           <h2 class="h5">Forum</h2>
           <p>Ask questions and share advice.</p>
-          <a class="btn btn-outline-success" href="{% url 'forum:post_list' %}">View forum</a>
+          <a class="btn btn-outline-success" href="{% url 'forum:post_list' %}">Join the garden gossip!</a>
         </div>
       </div>
     </div>
@@ -35,9 +36,9 @@
     <div class="col-md-4">
       <div class="card h-100">
         <div class="card-body">
-          <h2 class="h5">About</h2>
-          <p>Learn what the platform is for and how it works.</p>
-          <a class="btn btn-outline-secondary" href="{% url 'main:about' %}">Read more</a>
+          <h2 class="h5">Tasks for this month</h2>
+          <p>Seasonal guidance for UK gardeners.</p>
+          <a class="btn btn-outline-secondary" href="{% url 'main:tasks_january' %}">View January tasks.</a>
         </div>
       </div>
     </div>
