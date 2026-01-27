@@ -228,10 +228,19 @@ This space provides information about the gardening tasks that are recommended t
 
 - Analysis of the most popular plants planted by the users in a location
 - Analysis of the success rates of plants planted by users in a location
-   
+
 ## Testing
 
-*To be added*
+### Smoke Tests
+
+The following smoke tests are applied through `tests.py` located under each respective app.
+
+#### Main pages
+
+- Expected URLs exist and return a 200 status code
+- URL names work and return a 200 status code
+- The correct template names are used
+- URL patterns resolve to the intended view functions 
 
 ## Deploying the App on Heroku
 
