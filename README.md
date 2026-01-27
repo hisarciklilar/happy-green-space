@@ -235,7 +235,12 @@ This space provides information about the gardening tasks that are recommended t
 
 The following smoke tests are applied through `tests.py` located under each respective app.
 
-#### Main pages
+#### Forum Pages
+
+- Expected URLs exist and return a 200 status code
+- The correct template names are used
+
+#### Main Pages
 
 - Expected URLs exist and return a 200 status code
 - URL names work and return a 200 status code
