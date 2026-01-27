@@ -231,12 +231,16 @@ This space provides information about the gardening tasks that are recommended t
 
 ## Testing
 
+### Manual Tests
+
 ### Smoke Tests
 
 The following smoke tests are applied through `tests.py` located under each respective app.
 
 #### Forum Pages
 
+- Post Model tests
+- Reply Model tests
 - Expected URLs exist and return a 200 status code
 - The correct template names are used
 

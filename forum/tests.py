@@ -11,7 +11,6 @@ class PostModelTests(TestCase):
             email='testuser@example.com',
             password='testpass123'
             )
-
         self.post = Post.objects.create(
             title='Test Post',
             slug='test-post',
@@ -24,6 +23,36 @@ class PostModelTests(TestCase):
         self.assertEqual(self.post.slug, 'test-post')
         self.assertEqual(self.post.content, 'This is test for the post.')
         self.assertEqual(self.post.author, self.user)
+
+
+class ReplyModelTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='testuser@example.com',
+            password='testpass123'
+            )
+        self.replier = User.objects.create_user(
+            username='testreplier',
+            email='testreplier@example.com',
+            password='testpass123'
+            )
+        self.post = Post.objects.create(
+            title='Test Post',
+            slug='test-post',
+            content='This is test for the post.',
+            author=self.user
+            )
+        self.reply = Reply.objects.create(
+            body='This is a test reply.',
+            author=self.replier,
+            post=self.post
+        )
+
+    def test_reply_creation(self):
+        self.assertEqual(self.reply.body, 'This is a test reply.')
+        self.assertEqual(self.reply.author, self.replier)
+        self.assertEqual(self.reply.post, self.post)
 
 
 class PostListViewTests(TestCase):
