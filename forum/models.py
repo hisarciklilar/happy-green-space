@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
-# Create your models here.
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -12,9 +13,12 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_on', 'author']
-    
+
     def __str__(self):
         return f"Post: {self.title} || by {self.author.username}"
+
+    def get_absolute_url(self):
+        return reverse('forum:post_detail', kwargs={'slug': self.slug})
     
 class Reply(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, 
@@ -28,4 +32,3 @@ class Reply(models.Model):
 
     def __str__(self):
         return f"Reply by {self.author.username} on {self.post.title}"
-    
