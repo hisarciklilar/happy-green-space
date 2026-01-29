@@ -43,7 +43,7 @@ class PostCreate(generic.CreateView):
         slug = base_slug
         counter = 1
         while Post.objects.filter(slug=slug).exists():
-            slug = f"{base_slug}-{counter}"
             counter += 1
+            slug = f"{base_slug}-{counter}"
         form.instance.slug = slug
         return super().form_valid(form)    
