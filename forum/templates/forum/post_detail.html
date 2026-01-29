@@ -36,4 +36,16 @@
   {% endif %}
 
 </div>
+
+<hr class="my-4">
+
+<h3 class="h5 mb-3">Add a Reply</h3>
+<form method="post" action="{% url 'forum:reply_create' slug=post.slug %}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <!-- <label for="body" class="form-label">Your Reply</label> -->
+    <textarea class="form-control" name="body" rows="4" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Reply</button>
+</form>
 {% endblock %}

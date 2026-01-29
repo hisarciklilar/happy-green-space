@@ -233,6 +233,28 @@ This space provides information about the gardening tasks that are recommended t
 
 ### Manual Tests
 
+#### Navigation Barr 
+
+| Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
+| -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+| "Happy Green Space" link | Takes user to home page | Clicked on the page title | Home apge loaded | Pass |
+| "Home" link |Takes user to home page | Clicked on "Home" at navbar | Home page loaded| Pass|
+| "About" link |Takes user to about page|Clicked on "About" at navbar|About page loaded|Pass|
+|"Forum" link |Takes user to forum page|Clicked on "Forum" at navbar|Forum page loaded| Pass|
+| ||||Pass|
+
+#### Home Page
+
+| Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
+| -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+| ||||Pass|
+
+
+#### My Garden Page
+
+#### Forum Page
+
+
 ### Smoke Tests
 
 The following smoke tests are applied through `tests.py` located under each respective app.
