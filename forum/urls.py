@@ -1,5 +1,12 @@
 from django.urls import path
-from .views import PostList, PostDetail, PostCreate, ReplyCreate, PostUpdate
+from .views import (
+    PostList, 
+    PostDetail, 
+    PostCreate, 
+    ReplyCreate, 
+    PostUpdate, 
+    ReplyUpdate
+)
 #from . import views
 app_name = 'forum'
 
@@ -9,4 +16,5 @@ urlpatterns = [
     path('<slug:slug>/edit/', PostUpdate.as_view(), name='post_update'),
     path('<slug:slug>/reply/', ReplyCreate.as_view(), name='reply_create'),
     path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
+    path('reply/<int:pk>/edit/', ReplyUpdate.as_view(), name='reply_update'),
 ]

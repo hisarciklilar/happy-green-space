@@ -82,3 +82,12 @@ class ReplyCreate(generic.CreateView):
 
         self.object = form.save()
         return redirect(post.get_absolute_url())
+
+
+class ReplyUpdate(generic.UpdateView):
+    model = Reply
+    template_name = "forum/reply_form.html"
+    fields = ['body']
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()
