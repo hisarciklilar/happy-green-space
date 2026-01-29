@@ -49,6 +49,25 @@ class PostCreate(generic.CreateView):
         return super().form_valid(form)    
 
 
+class PostUpdate(generic.UpdateView):
+    model = Post
+    template_name = "forum/post_form.html"
+    fields = ['title', 'content']
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def form_valid(self, form):
+        form.instance.author = self.get_object().author
+        base_slug = slugify(form.instance.title) or 'post'
+        slug = base_slug
+        counter = 1
+        while Post.objects.filter(slug=slug).exclude(pk=form.instance.pk).exists():
+            counter += 1
+            slug = f"{base_slug}-{counter}"
+        form.instance.slug = slug
+        return super().form_valid(form)
+
+
 class ReplyCreate(generic.CreateView):
     model = Reply
     template_name = "forum/reply_form.html"
