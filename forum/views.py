@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+from django.utils import timezone
 
 from .models import Post, Reply
 
@@ -57,6 +59,7 @@ class PostUpdate(generic.UpdateView):
     slug_url_kwarg = 'slug'
 
     def form_valid(self, form):
+        form.instance.edited_on = timezone.now()
         form.instance.author = self.get_object().author
         base_slug = slugify(form.instance.title) or 'post'
         slug = base_slug
@@ -67,6 +70,14 @@ class PostUpdate(generic.UpdateView):
         form.instance.slug = slug
         return super().form_valid(form)
 
+
+class PostDelete(generic.DeleteView):
+    model = Post
+    template_name = "forum/post_confirm_delete.html"
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy("forum:post_list")
+ 
 
 class ReplyCreate(generic.CreateView):
     model = Reply
@@ -88,6 +99,18 @@ class ReplyUpdate(generic.UpdateView):
     model = Reply
     template_name = "forum/reply_form.html"
     fields = ['body']
+
+    def form_valid(self, form):
+        form.instance.updated_on = timezone.now()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()
+    
+
+class ReplyDelete(generic.DeleteView):
+    model = Reply
+    template_name = "forum/reply_confirm_delete.html"
 
     def get_success_url(self):
         return self.object.post.get_absolute_url()

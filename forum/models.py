@@ -10,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, 
                                on_delete=models.CASCADE, related_name='forum_posts')
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    edited_on = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_on', 'author']
@@ -27,7 +27,7 @@ class Reply(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commenter')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    edited_on = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_on', 'author']

@@ -22,10 +22,15 @@
       </p>
       </div>
 
-  <a class="btn btn-sm btn-outline-primary"
-     href="{% url 'forum:post_update' slug=post.slug %}">
-    Edit
-  </a>
+  <div class="btn-group" role="group" aria-label="Post actions">
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'forum:post_update' slug=post.slug %}">
+      Edit
+    </a>
+    <a class="btn btn-sm btn-outline-danger" href="{% url 'forum:post_delete' slug=post.slug %}">
+      Delete
+    </a>
+  </div>
+
 </div>
       <p class="mb-0">{{ post.content|linebreaksbr }}</p>
     </div>
@@ -45,10 +50,15 @@
                 <small class="text-muted ">(Last updated: {{ reply.updated_on|date:"j M Y, H:i" }})</small>
               {% endif %} 
           </p>
-          <a class="btn btn-sm btn-outline-primary"
-            href="{% url 'forum:reply_update' pk=reply.pk %}">
-            Edit
-          </a>
+          <div class="btn-group" role="group" aria-label="Reply actions">
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'forum:reply_update' pk=reply.pk %}">
+              Edit
+            </a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'forum:reply_delete' pk=reply.pk %}">
+              Delete
+            </a>
+          </div>
+
         </div>
           <p class="mb-0">{{ reply.body|linebreaksbr }}</p>
         </div>

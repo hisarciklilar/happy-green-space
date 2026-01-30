@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="h4  mb-3">Delete Post</h1>
+    
+    <div class="alert alert-warning">
+        Are you sure you want to delete <strong>{{ object.title }}</strong>?
+        <div class="mt-2 small text-muted">This action cannot be undone.</div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'forum:post_detail' slug=object.slug %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -233,7 +233,7 @@ This space provides information about the gardening tasks that are recommended t
 
 ### Manual Tests
 
-#### Navigation Barr 
+#### Navigation Bar
 
 | Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
 | -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
@@ -247,12 +247,16 @@ This space provides information about the gardening tasks that are recommended t
 
 | Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
 | -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+| "Join the garden gossip" link | Takes user to forum page | Clicked on the "join the garden gossip" button| Forum page loaded |Pass|
+| "View January tasks" link| Takes user to january tasks page | Clicked on the "View January tasks" button | January tasks page loaded |Pass|
+| ||||Pass|
+| ||||Pass|
 | ||||Pass|
 
 
 #### My Garden Page
 
-#### Forum Page
+#### Forum App
 
 
 ### Smoke Tests
