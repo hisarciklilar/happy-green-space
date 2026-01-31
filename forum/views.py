@@ -101,7 +101,7 @@ class ReplyUpdate(generic.UpdateView):
     fields = ['body']
 
     def form_valid(self, form):
-        form.instance.updated_on = timezone.now()
+        form.instance.edited_on = timezone.now()
         return super().form_valid(form)
 
     def get_success_url(self):

@@ -10,7 +10,8 @@ class Post(models.Model):
     author = models.ForeignKey(User, 
                                on_delete=models.CASCADE, related_name='forum_posts')
     created_on = models.DateTimeField(auto_now_add=True)
-    edited_on = models.DateTimeField(auto_now=True)
+    edited_on = models.DateTimeField(null=True, blank=True)
+
 
     class Meta:
         ordering = ['-created_on', 'author']
@@ -20,14 +21,16 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('forum:post_detail', kwargs={'slug': self.slug})
-    
+
+
 class Reply(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, 
                              related_name='replies')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commenter')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    edited_on = models.DateTimeField(auto_now=True)
+    edited_on = models.DateTimeField(null=True, blank=True)
+
 
     class Meta:
         ordering = ['-created_on', 'author']
