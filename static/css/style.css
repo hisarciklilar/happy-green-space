@@ -66,7 +66,7 @@ main {
 
 body {
     font-family: 'Lato', sans-serif;
-    background: url('../images/leaves.png') repeat;
+    background: url('/static/images/leaves.png') repeat;
     background-color: #c1edb6; /* fallback color */
     color: #2f4f2f;
 }
