@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
+# DEBUG = False
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'forum',
     'plants',
     'main',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'happy_green_space.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +120,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Auhentication settings
+LOGIN_URL='login'
+LOGIN_REDIRECT_URL = 'main:home'
+LOGOUT_REDIRECT_URL = 'main:home'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

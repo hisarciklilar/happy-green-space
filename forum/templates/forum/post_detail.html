@@ -21,7 +21,7 @@
         {% endif %}
       </p>
       </div>
-
+  {% if user == post.author %}
   <div class="btn-group" role="group" aria-label="Post actions">
     <a class="btn btn-sm btn-outline-primary" href="{% url 'forum:post_update' slug=post.slug %}">
       Edit
@@ -30,6 +30,7 @@
       Delete
     </a>
   </div>
+  {% endif %}
 
 </div>
       <p class="mb-0">{{ post.content|linebreaksbr }}</p>
@@ -50,6 +51,7 @@
                 <small class="text-muted ">(Last updated: {{ reply.edited_on|date:"j M Y, H:i" }})</small>
               {% endif %} 
           </p>
+          {% if user == reply.author %}
           <div class="btn-group" role="group" aria-label="Reply actions">
             <a class="btn btn-sm btn-outline-primary" href="{% url 'forum:reply_update' pk=reply.pk %}">
               Edit
@@ -58,6 +60,7 @@
               Delete
             </a>
           </div>
+          {% endif %}
 
         </div>
           <p class="mb-0">{{ reply.body|linebreaksbr }}</p>
@@ -73,6 +76,7 @@
 <hr class="my-4">
 
 <h3 class="h5 mb-3">Add a Reply</h3>
+{%if not user.is_authenticated %}
 <form method="post" action="{% url 'forum:reply_create' slug=post.slug %}">
   {% csrf_token %}
   <div class="mb-3">
@@ -81,4 +85,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Reply</button>
 </form>
+{% else %}
+<p class="text-muted">Please <a href="{% url 'login' %}?next={{ request.path }}">
+  log in</a> to post a reply.</p>
+{% endif %}
 {% endblock %}

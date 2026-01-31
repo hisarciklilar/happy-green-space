@@ -22,10 +22,38 @@
             <a class="navbar-brand" href="/">Happy Green Space</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'main:home' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'main:about' %}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'forum:post_list' %}">Forum</a></li>
-                    <!-- Add other links here later -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'forum:post_list' %}">Forum</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="nav-link text-muted">
+                                Hi, {{ user.username }}
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-link nav-link" type="submit">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

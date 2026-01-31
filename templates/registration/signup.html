@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container py-4" style="max-width: 520px;">
+  <h1 class="h4 mb-3">Sign up</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Create account</button>
+  </form>
+</div>
+{% endblock %}

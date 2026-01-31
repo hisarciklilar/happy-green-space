@@ -4,8 +4,15 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import Post, Reply
+
+
+class AuthorRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        post = self.get_object()
+        return post.author == self.request.user
 
 
 class PostList(generic.ListView):
@@ -29,18 +36,19 @@ class PostDetail(generic.DetailView):
         context['replies'] = self.object.replies.all().order_by('created_on')
         return context
 
-class PostCreate(generic.CreateView):
+class PostCreate(LoginRequiredMixin, generic.CreateView):
     model = Post
     template_name = "forum/post_form.html"
     fields = ['title', 'content']
 
     def form_valid(self, form):
-        fallback_user = User.objects.filter(is_superuser=True).first()
-        if fallback_user is None:
-            fallback_user = User.objects.first()
-#        form.instance.author = self.request.user
-        form.instance.author = fallback_user
-        
+#         fallback_user = User.objects.filter(is_superuser=True).first()
+#         if fallback_user is None:
+#             fallback_user = User.objects.first()
+# #        form.instance.author = self.request.user
+#         form.instance.author = fallback_user
+        form.instance.author = self.request.user
+
         base_slug = slugify(form.instance.title)
         slug = base_slug
         counter = 1
@@ -51,7 +59,7 @@ class PostCreate(generic.CreateView):
         return super().form_valid(form)    
 
 
-class PostUpdate(generic.UpdateView):
+class PostUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     model = Post
     template_name = "forum/post_form.html"
     fields = ['title', 'content']
@@ -71,7 +79,7 @@ class PostUpdate(generic.UpdateView):
         return super().form_valid(form)
 
 
-class PostDelete(generic.DeleteView):
+class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Post
     template_name = "forum/post_confirm_delete.html"
     slug_field = 'slug'
@@ -88,14 +96,15 @@ class ReplyCreate(generic.CreateView):
         post = get_object_or_404(Post, slug=self.kwargs['slug'])
         form.instance.post = post
 
-        fallback_user = User.objects.filter(is_superuser=True).first() or User.objects.first()
-        form.instance.author = fallback_user
+        # fallback_user = User.objects.filter(is_superuser=True).first() or User.objects.first()
+        # form.instance.author = fallback_user
+        form.instance.author = self.request.user
 
         self.object = form.save()
         return redirect(post.get_absolute_url())
 
 
-class ReplyUpdate(generic.UpdateView):
+class ReplyUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     model = Reply
     template_name = "forum/reply_form.html"
     fields = ['body']
@@ -108,7 +117,7 @@ class ReplyUpdate(generic.UpdateView):
         return self.object.post.get_absolute_url()
     
 
-class ReplyDelete(generic.DeleteView):
+class ReplyDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Reply
     template_name = "forum/reply_confirm_delete.html"
 
