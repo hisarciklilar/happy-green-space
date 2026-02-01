@@ -126,7 +126,7 @@ As a **Site User** I can **get information about plants I search on the platform
 
 -   **AC4** User can see search results on screen
 
-_**Obtain information about monthyl tasks**_:
+_**Obtain information about monthly tasks**_:
 
 As a **Site User** I can **get information about monthly gardening tasks** so that **I can keep up with the work I need to complete on time**
 
@@ -150,7 +150,7 @@ _**Add an image (or images) to post and replies in forum**_:
 
 As a **Site User** I can **add images to posts and/or replies in the forum** so that **I can better communicate with other users of the platform**
 
--   **AC1** User can locate upload image button easly when posting or replying
+-   **AC1** User can locate upload image button easily when posting or replying
 
 -   **AC2** User can upload images to share
 
@@ -164,7 +164,7 @@ As a **Site User** I can **add images to my garden journal** so that **I can bet
 
 -   **AC2** User can upload images
 
--   **AC3** User can delete images within a post/reply
+-   **AC3** User can delete images when they are no longer required
 
 ## Existing Features
 

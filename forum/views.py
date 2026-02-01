@@ -17,7 +17,6 @@ class AuthorRequiredMixin(UserPassesTestMixin):
 
 class PostList(generic.ListView):
     model = Post
-#    queryset = Post.objects.all()
     template_name = "forum/post_list.html"
     context_object_name = "posts"
     ordering = ['-created_on']
@@ -42,11 +41,6 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
     fields = ['title', 'content']
 
     def form_valid(self, form):
-#         fallback_user = User.objects.filter(is_superuser=True).first()
-#         if fallback_user is None:
-#             fallback_user = User.objects.first()
-# #        form.instance.author = self.request.user
-#         form.instance.author = fallback_user
         form.instance.author = self.request.user
 
         base_slug = slugify(form.instance.title)
@@ -62,7 +56,7 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
 class PostUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     model = Post
     template_name = "forum/post_form.html"
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'status']
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
@@ -78,6 +72,8 @@ class PostUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
         form.instance.slug = slug
         return super().form_valid(form)
 
+    def get_object(self, queryset = None):
+        return get_object_or_404(Post, slug=self.kwargs['slug'], author=self.request.user)
 
 class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Post
@@ -85,7 +81,10 @@ class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy("forum:post_list")
- 
+
+    def get_object(self, queryset = None):
+        return get_object_or_404(Post, slug=self.kwargs['slug'], author=self.request.user)
+
 
 class ReplyCreate(generic.CreateView):
     model = Reply
@@ -95,9 +94,6 @@ class ReplyCreate(generic.CreateView):
     def form_valid(self, form):
         post = get_object_or_404(Post, slug=self.kwargs['slug'])
         form.instance.post = post
-
-        # fallback_user = User.objects.filter(is_superuser=True).first() or User.objects.first()
-        # form.instance.author = fallback_user
         form.instance.author = self.request.user
 
         self.object = form.save()
@@ -116,6 +112,8 @@ class ReplyUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return self.object.post.get_absolute_url()
     
+    def get_object(self, queryset = None):
+        return get_object_or_404(Reply, pk=self.kwargs['pk'], author=self.request.user)
 
 class ReplyDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Reply
@@ -123,3 +121,6 @@ class ReplyDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
 
     def get_success_url(self):
         return self.object.post.get_absolute_url()
+
+    def get_object(self, queryset = None):
+        return get_object_or_404(Reply, pk=self.kwargs['pk'], author=self.request.user)
