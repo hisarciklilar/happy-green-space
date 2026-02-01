@@ -168,7 +168,8 @@ As a **Site User** I can **add images to my garden journal** so that **I can bet
 
 ## Existing Features
 
-The platform curently consists of 3 apps:
+The platform currently consists of 3 apps:
+
 - Users
 - Main
 - Forum
@@ -301,17 +302,25 @@ This space provides information about the gardening tasks that are recommended t
 | "Sign up" link | Opens a page to sign up  | Clicked on the "Sign up" link| Loaded a form page for setting user name and password  |Pass|
 | Sign up - create new account | Creates a new user account | Registered a new user and password on the sign up page | Registered new user; reloaded the home page with a personaliased greeting |Pass|
 | "Logout" link  | User is logged out  | Clicked on "Logout" link | User logged out, home page loaded with a Login link replacing logout |Pass|
-| Post a reply| Logged in user sees a reply field and a reply button. | Logged in as a user and replied to a post | Reply added to the respective post, together with visible Edit and Delete buttons. | Pass|
-| Post a reply  |Reply field or the button not visible if the user is not logged in  | Logged out of the platform and visited a post | Reply field and button were replaced by a log in link. |Pass|
-| Log in link on post detail page (user not logged in) | Calls the log in page with a an option to sign up for unregistered users | Clicked on log in link on the post detail page | Log in page loaded with an option to sign up |Pass|
-| "New Post" button | User logged in - Page loads with a post create form | Created a post by providing a title and a post text | Post detail page loaded with Edit and Delete options provided for the user | Pass |  
-|"New Post" button | User not logged in - Calls the log in page with a an option to sign up for unregistered users | Clicked on New Post  | Log in page loaded with an option to sign up |Pass|
-|Edit & Delete buttons for logged in users | User can edit or delete own post/reply when logged in | Edited / deleted posts and replies written by the user | Requested changes were made | Pass|
-|Edit & Delete buttons for other users | Edit and delete are not available for post and replies of other users | Visited posts and replies written by other users | Could not locate any edit or delete buttons for posts/replies of  other users while these are available to the owner of the post/reply | Pass|
 
 
 #### Forum App
 
+
+| Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
+| -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+| "New Post" button | User logged in - Page loads with a post create form | Created a post by providing a title and a post text | Post detail page loaded with Edit and Delete options provided for the user | Pass |  
+|"New Post" button | User not logged in - Calls the log in page with a an option to sign up for unregistered users | Clicked on New Post  | Log in page loaded with an option to sign up |Pass|
+| Post a reply| Logged in user sees a reply field and a reply button. | Logged in as a user and replied to a post | Reply added to the respective post, together with visible Edit and Delete buttons. | Pass|
+| Post a reply  |Reply field or the button not visible if the user is not logged in  | Logged out of the platform and visited a post | Reply field and button were replaced by a log in link. |Pass|
+| Log in link on post detail page (user not logged in) | Calls the log in page with a an option to sign up for unregistered users | Clicked on log in link on the post detail page | Log in page loaded with an option to sign up |Pass|
+|Edit & Delete buttons for logged in users | User can edit or delete own post/reply when logged in | Edited / deleted posts and replies written by the user | Requested changes were made | Pass|
+|Edit & Delete buttons for other users | Edit and delete are not available for post and replies of other users | Visited posts and replies written by other users | Could not locate any edit or delete buttons for posts/replies of  other users while these are available to the owner of the post/reply | Pass|
+| Ordering of replies to a post | Replies ordered from the oldest to the newest | Created a few replies under a post | Replies ordered in the expected way |Pass|
+| Posts without a title | No post created without a title| Logged in user attempts to create a post without a title| A message appears pointing to the title field and asking for a text |Pass|
+| Posts without content | No post created without content| Logged in user attempts to create a post without content| A message appears pointing to the content field and asking for a text |Pass|
+| 10 posts per page|10 posts are displayed on one page. |Logged in user created new posts while the total number of posts exceeded 10| Older posts are provided on a second page, with the "previous" / "next" buttons added for navigation|Pass|
+| Mark edited posts & replies| Edited posts & replies are marked with an "edited" stamp while providing dat/time for edit | Logged in user edited post and reply | Edited post and replies were marked with an "edited" stamp, time and date information provided next to the stamp | Pass |
 
 ### Smoke Tests
 
