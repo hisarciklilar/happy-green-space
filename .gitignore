@@ -67,3 +67,4 @@ poetry.lock
 # === My stuff ===
 # requirements.txt
 .test-users.txt
+.things-to-do.txt

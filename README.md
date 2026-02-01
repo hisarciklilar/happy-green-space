@@ -30,14 +30,14 @@ _**Account creation**_:
 
 As a **Site User** I can **create/register an account** so that **I can participate in the plot holders' forum and also have my own account space where I can save a list of my plants and a wish list**.
 
--   **AC1** Given an email a user can register an account.\
+-   **AC1** User can register an account by providing a user name and password.\
 -   **AC2** Then the user can log in.\
--   **AC3** When the user is logged in they can read posts in the forum.\
+-   **AC3** When the user is logged in they can read posts & replies in the forum.\
 -   **AC4** When the user is logged in they can effectively use their personal space to create, edit and delete plant entries.
 
 _**Read a post**_:
 
-As a **Site User**, I can **read posts on the plot holders' forum** so that **I can join the conversation**.
+As a **Site User**, I can **read posts and replies on the plot holders' forum** so that **I can join the conversation**.
 
 -   **AC1** When the user is logged in, they can see and read the posts in the forum
 
@@ -125,6 +125,46 @@ As a **Site User** I can **get information about plants I search on the platform
 -   **AC3** User can press the search button, which triggers a search in the database
 
 -   **AC4** User can see search results on screen
+
+_**Obtain information about monthyl tasks**_:
+
+As a **Site User** I can **get information about monthly gardening tasks** so that **I can keep up with the work I need to complete on time**
+
+-   **AC1** User can visit the monthly tasks link
+
+-   **AC2** User can read the monthly gardening-related tasks
+
+_**Perform a keyword search on post and replies in the forum**_:
+
+As a **Site User** I can **perform a keyword search on post and replies in the forum** so that **I can check for information in previously published posts/replies**
+
+-   **AC1** User can find the search button easily
+
+-   **AC2** User can enter a keyword in the search field
+
+-   **AC3** User can see the results of a keyword search
+
+-   **AC4** User can visit the post/reply from the keyword search results list
+
+_**Add an image (or images) to post and replies in forum**_:
+
+As a **Site User** I can **add images to posts and/or replies in the forum** so that **I can better communicate with other users of the platform**
+
+-   **AC1** User can locate upload image button easly when posting or replying
+
+-   **AC2** User can upload images to share
+
+-   **AC3** User can share images within a post/reply
+
+_**Add an image (or images) to post and replies in forum**_:
+
+As a **Site User** I can **add images to my garden journal** so that **I can better remember the details of my plot / garden and plants**
+
+-   **AC1** User can locate upload image button easly in "my garden" personal space
+
+-   **AC2** User can upload images
+
+-   **AC3** User can delete images within a post/reply
 
 ## Existing Features
 
