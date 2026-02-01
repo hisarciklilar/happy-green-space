@@ -56,7 +56,7 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
 class PostUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     model = Post
     template_name = "forum/post_form.html"
-    fields = ['title', 'content', 'status']
+    fields = ['title', 'content']
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
@@ -86,7 +86,7 @@ class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
         return get_object_or_404(Post, slug=self.kwargs['slug'], author=self.request.user)
 
 
-class ReplyCreate(generic.CreateView):
+class ReplyCreate(LoginRequiredMixin, generic.CreateView):
     model = Reply
     template_name = "forum/reply_form.html"
     fields = ['body']
@@ -114,6 +114,7 @@ class ReplyUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     
     def get_object(self, queryset = None):
         return get_object_or_404(Reply, pk=self.kwargs['pk'], author=self.request.user)
+
 
 class ReplyDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Reply
