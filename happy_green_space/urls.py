@@ -17,8 +17,7 @@ urlpatterns = [
     
     # Application URL
     path('accounts/', include('accounts.urls')),
-    path('', include('main.urls'), name='main-url'),
-#    path('plants/', include('plants.urls'), name='plants-url'),    
+    path('', include('main.urls'), name='main-url'), 
     path('forum/', include('forum.urls'), name='forum-url'),
 ]
 

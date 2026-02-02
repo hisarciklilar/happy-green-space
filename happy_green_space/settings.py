@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_summernote',
     'forum',
-    'plants',
+    'my_garden',
     'main',
     'accounts',
 ]
