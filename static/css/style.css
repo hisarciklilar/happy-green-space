@@ -1,5 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
+    background: url('../images/leaves.png') repeat;
     background-color: #f3f7f2;
     color: #2f4f2f;
     margin: 0;
@@ -62,11 +63,4 @@ footer {
 
 main {
     flex: 1;
-}
-
-body {
-    font-family: 'Lato', sans-serif;
-    background: url('/static/images/leaves.png') repeat;
-    background-color: #c1edb6; /* fallback color */
-    color: #2f4f2f;
 }
