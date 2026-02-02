@@ -374,15 +374,39 @@ The following smoke tests are applied through `tests.py` located under each resp
 
     ![Set Config Vars screenshot](./assets/images/read_me/deployment/dss03.png)
 
+    **NOTE that although this setting may be useful in the initial development stage, it will need to be changed for correct css features to apply. See the subsection on "Static files" below.**
+
 8.  In `Deploy`, after providing GitHub Repository details, click on `Deploy Branch` in the `Manual deploy` section.
 
-    ![Deployment screenshot 1](./assets/images/read_me/deployment**/dss04.png)
+    ![Deployment screenshot 1](./assets/images/read_me/deployment/dss04.png)
 
     ![Deployment screenshot 2](./assets/images/read_me/deployment/dss05.png)
 
 9.  You may view the page once the deployment is completed.
 
     ![Deployment completed screenshot](./assets/images/read_me/deployment/dss06.png)
+
+### Static Files (CSS, images) on Heroku
+
+This project serves static assets (CSS, images) using Django’s staticfiles system with **Whitenoise**.
+
+- Local development: Static assets live in the project `static/` folder:
+
+  - `static/css/` (e.g. `static/css/style.css`)
+  - `static/images/` (e.g. `static/images/leaves.png`)
+
+- In the settings.py, the app is configured with:
+
+  - `STATIC_URL = "static/"`
+  - `STATICFILES_DIRS = [BASE_DIR / "static"]`
+
+- Heroku runs `python manage.py collectstatic` on deployment and collects static files into `STATIC_ROOT = BASE_DIR / "staticfiles"` (set in the `settings.py`). Whitenoise serves them in production.
+
+- Important rules:
+  - `staticfiles/` is generated output of collecting static files. Do NOT edit files inside it
+  - Add this folder to the `.gitignore`
+  - Ensure the Heroku config var `DISABLE_COLLECTSTATIC` is not enabled at later stages of project. Otherwise, static assets will not be collected and served correctly.
+  - In CSS, prefer relative paths for images (e.g. `url("../images/leaves.png")`) to avoid issues in local development and production.
 
 ## Creating a Fork
 
