@@ -338,8 +338,10 @@ This space provides information about the gardening tasks that are recommended t
 | -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
 | Add to plant database | Only allows logged in users to add | Visited plants/new page while logged out | Asked to login or sign up | Pass |
 | Add to plant database  | Allows logged in users to add new plant  | Visited plants/new page while logged in and completed new plant form  |Plant added to the plant catalogue; page directed to plants list   |Pass  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Add plot button | Add plot button takes logged in user to plot detail form page  | Clicked on the add plot button as a logged in user |Page directed to plot detail form  |Pass  |
+| Add plot button | Add plot button takes user to login page if user not logged in | Clicked on the add plot button when no user is logged in |Page directed to login / sign up page  |Pass |
+| Plot detail form| User can add plot name and description to their garden/allotment space  | Created plots with definitions | Plot names and descriptions are saved; user directed to plot list page  |Pass  |
+|Plot details revealed to plot owner only | Only logged in users can see their own plot details  | Entered plot details for two different users and tried access to plot details | The details of plots are revealed only to plot owner  |Pass  |
 |  |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
