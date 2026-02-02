@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4">Plant Catalogue</h1>
+    {% if user.is_authenticated %}
+      <a href="{% url 'my_garden:plant_create' %}" class="btn btn-success">
+        + Suggest a plant
+      </a>
+    {% endif %}
+  </div>
+
+  <ul class="list-group">
+    {% for plant in plants %}
+      <li class="list-group-item">
+        <a href="{% url 'my_garden:plant_detail' plant.pk %}">
+          {{ plant.name }}
+        </a>
+        <span class="text-muted small">({{ plant.get_category_display }})</span>
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">
+        No plants added yet.
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}

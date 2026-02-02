@@ -170,32 +170,40 @@ As a **Site User** I can **add images to my garden journal** so that **I can bet
 
 The platform currently consists of 3 apps:
 
-- Users
-- Main
-- Forum
-- Plants
+- main
+- accounts
+- forum
+- my_garden
 
-The Users app has the functionality of user registration and login
+The `main` app hosts the static pages such as the base template, the homepage, the about page, and the tasks of the month page.
 
-The Main app hosts the static pages such as the base template, the homepage, the about page, and the taks of the month page. 
+The `accounts` app has the functionality of user registration and login
 
-The Forum app allows users to post in the forum and also reply to others' posts
+The `forum` app allows users to post in the forum and also reply to others' posts
 
-The Plants app allows users to create a list of plants they planted, takes notes about the plant also state whether or not they are happy with the outcome. 
+The `my_garden` app allows users to create a list of plants they planted, takes notes about the plant also state whether or not they are happy with the outcome. 
 
 ### Main
 
-The static pages hosted in the main app include: 
+The static pages hosted in the main app include:
 
-- home : This is the home page for the platform. It provides breif information about the functionality of the platform and provides links to other pages and apps.  
-- about : Provides brief information abour the Happy Green Space platform
+- base: Base template for the pages in the platform to ensure consistency throughout. It includes the common navigation bar and footer.
+- home : This is the home page for the platform. It provides brief information about the functionality of the platform and provides links to other pages and apps.  
+- about : Provides brief information about the Happy Green Space platform
 - tasks for the month: this page currently provides information about the nature in January and gardening tasks to undertake in this month. It is currently provided as a placeholder for further development. Links for each month will be added at later stages. This space can also later be converted into blog type model where users can contribute with blogs on monthly tasks or community activities.  
 
 ### Forum
 
 This is the space for garden gossip! Allotment users usually like sharing information with others about plants and tips for success. The platform will provide users with a forum space where they communicate with each other.
 
-### Plants
+It consist of the `Post` and `Reply` models.
+
+The pages in the app include:
+
+- Post View: post_list, post_detail, post_form, post_confirm_delete
+- Reply View: reply_form, reply_confirm_delete
+
+### My Garden
 
 A good planting planning requires plot holders to make notes about what they planted and where. Hand-written notes are likely to get lost or take time to organize. The platform provides plot holders with a digital space where they can easily make lists of their plants as well as taking notes about their plants and mark whether or not the plant grew well.  
 

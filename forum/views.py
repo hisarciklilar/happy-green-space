@@ -15,6 +15,8 @@ class AuthorRequiredMixin(UserPassesTestMixin):
         return post.author == self.request.user
 
 
+# POST VIEWS  
+
 class PostList(generic.ListView):
     model = Post
     template_name = "forum/post_list.html"
@@ -75,6 +77,7 @@ class PostUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
     def get_object(self, queryset = None):
         return get_object_or_404(Post, slug=self.kwargs['slug'], author=self.request.user)
 
+
 class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     model = Post
     template_name = "forum/post_confirm_delete.html"
@@ -85,6 +88,8 @@ class PostDelete(LoginRequiredMixin, AuthorRequiredMixin, generic.DeleteView):
     def get_object(self, queryset = None):
         return get_object_or_404(Post, slug=self.kwargs['slug'], author=self.request.user)
 
+
+# REPLY VIEWS
 
 class ReplyCreate(LoginRequiredMixin, generic.CreateView):
     model = Reply
@@ -111,7 +116,7 @@ class ReplyUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return self.object.post.get_absolute_url()
-    
+  
     def get_object(self, queryset = None):
         return get_object_or_404(Reply, pk=self.kwargs['pk'], author=self.request.user)
 

@@ -10,14 +10,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     # auth
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), 
+    path('accounts/login/', auth_views.LoginView.as_view(
+        template_name='registration/login.html'), 
          name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    
+
     # Application URL
     path('accounts/', include('accounts.urls')),
     path('', include('main.urls'), name='main-url'), 
     path('forum/', include('forum.urls'), name='forum-url'),
+    path('my-garden/', include('my_garden.urls'), name='my-garden-url'),
 ]
 
