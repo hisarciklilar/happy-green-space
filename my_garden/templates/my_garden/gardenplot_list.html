@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">My Garden Plots</h1>
+    <a class="btn btn-success" href="{% url 'my_garden:gardenplot_create' %}">+ Add plot</a>
+  </div>
+
+  {% if plots %}
+    <div class="list-group">
+      {% for plot in plots %}
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fw-bold">
+                  {{ plot.name }}
+              </div>
+              {% if plot.description %}
+                <div class="text-muted small">{{ plot.description|linebreaksbr }}</div>
+              {% endif %}
+            </div>
+
+            <div class="ms-3 d-flex gap-2">
+              <a class="btn btn-outline-secondary btn-sm" href="{% url 'my_garden:gardenplot_update' plot.pk %}">Edit</a>
+              <a class="btn btn-outline-danger btn-sm" href="{% url 'my_garden:gardenplot_delete' plot.pk %}">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      You don't have any plots yet. Create one to start logging plantings.
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -265,9 +265,13 @@ __The PLANT Model__
 
 Plot holders usually experiment with planting a variety fruit, herb or vegetables but sometimes they may not know enough about different plants, in particular when they are newbies. WikiPlant pages will allow users to search for plants and obtain information about when to plant, where, what harvest to expect, etc.
 
-### My allotment
+### My garden
 
-A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform may provide plot holders with a digital representation of their allotment space where they can mark on the digital allotment map what plants are planted, where. 
+A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform may provide plot holders with a digital representation of their allotment space where they can mark on the digital allotment map what plants are planted, where.
+
+#### Plant Model
+
+The `Plant` model provides a global plant list and details, available to anybody who visits the site. Currently any logged in user can add to the plant database, but they do not have the right to edit or delete these entries. In the later versions, changes will be made by adding a mechanism where the plant suggestions made by the users will need to be approved by the admin. Users will be able to edit/delete entries until the approval of the admin while no changes can be made after approval. In this modified version, only the approved plants will be listed on the plants page while the users will be able to a temporary list that they contributed (giving them the option to edit/delete) until admin approval.
 
 ### Tasks of the month
 
@@ -311,9 +315,7 @@ This space provides information about the gardening tasks that are recommended t
 | Sign up - create new account | Creates a new user account | Registered a new user and password on the sign up page | Registered new user; reloaded the home page with a personaliased greeting |Pass|
 | "Logout" link  | User is logged out  | Clicked on "Logout" link | User logged out, home page loaded with a Login link replacing logout |Pass|
 
-
 #### Forum App
-
 
 | Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
 | -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
@@ -329,6 +331,19 @@ This space provides information about the gardening tasks that are recommended t
 | Posts without content | No post created without content| Logged in user attempts to create a post without content| A message appears pointing to the content field and asking for a text |Pass|
 | 10 posts per page|10 posts are displayed on one page. |Logged in user created new posts while the total number of posts exceeded 10| Older posts are provided on a second page, with the "previous" / "next" buttons added for navigation|Pass|
 | Mark edited posts & replies| Edited posts & replies are marked with an "edited" stamp while providing dat/time for edit | Logged in user edited post and reply | Edited post and replies were marked with an "edited" stamp, time and date information provided next to the stamp | Pass |
+
+#### My_garden app
+
+| Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
+| -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+| Add to plant database | Only allows logged in users to add | Visited plants/new page while logged out | Asked to login or sign up | Pass |
+| Add to plant database  | Allows logged in users to add new plant  | Visited plants/new page while logged in and completed new plant form  |Plant added to the plant catalogue; page directed to plants list   |Pass  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
 
 ### Smoke Tests
 

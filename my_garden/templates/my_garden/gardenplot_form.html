@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="h4 mb-3">
+    {% if object %}Edit Garden Plot{% else %}Add Garden Plot{% endif %}
+  </h1>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        Please correct the errors below.
+      </div>
+    {% endif %}
+
+    {{ form.as_p }}
+
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a class="btn btn-outline-secondary" href="{% url 'my_garden:gardenplot_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

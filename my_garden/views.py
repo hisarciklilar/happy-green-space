@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
-from .models import Plant
+from .models import Plant, GardenPlot
 
 
 # PLANT VIEWS
@@ -13,7 +13,7 @@ class PlantListView(ListView):
     model = Plant
     template_name = "my_garden/plant_list.html"
     context_object_name = "plants"
-    # ordering = ['name']
+    ordering = ['name']
     paginate_by = 20
 
 
@@ -47,3 +47,49 @@ class PlantCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.suggested_by = self.request.user
         return super().form_valid(form)
+
+# END PLANT VIEWS
+
+# GARDEN PLOT VIEWS
+
+class GardenPlotListView(LoginRequiredMixin, ListView):
+    model = GardenPlot
+    template_name = "my_garden/gardenplot_list.html"
+    context_object_name = "plots"
+
+    def get_queryset(self):
+        return GardenPlot.objects.filter(
+            owner=self.request.user
+            ).order_by("name")
+
+
+class GardenPlotCreateView(LoginRequiredMixin, CreateView):
+    model = GardenPlot
+    fields = ["name", "description"]
+    template_name = "my_garden/gardenplot_form.html"
+    success_url = reverse_lazy("my_garden:gardenplot_list")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+
+class GardenPlotUpdateView(LoginRequiredMixin, UpdateView):
+    model = GardenPlot
+    fields = ["name", "description"]
+    template_name = "my_garden/gardenplot_form.html"
+    success_url = reverse_lazy("my_garden:gardenplot_list")
+
+    def get_queryset(self):
+        return GardenPlot.objects.filter(owner=self.request.user)
+
+
+class GardenPlotDeleteView(LoginRequiredMixin, DeleteView):
+    model = GardenPlot
+    template_name = "my_garden/gardenplot_confirm_delete.html"
+    success_url = reverse_lazy("my_garden:gardenplot_list")
+
+    def get_queryset(self):
+        return GardenPlot.objects.filter(owner=self.request.user)
+
+# END GARDEN PLOT VIEWS
