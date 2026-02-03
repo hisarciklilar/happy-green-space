@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
@@ -8,7 +8,7 @@ from .models import Plant, GardenPlot, PlantLog
 
 # PLANT VIEWS
 
-class PlantListView(ListView):
+class PlantListView(generic.ListView):
     """Display all plants in the catalogue."""
     model = Plant
     template_name = "my_garden/plant_list.html"
@@ -17,14 +17,14 @@ class PlantListView(ListView):
     paginate_by = 20
 
 
-class PlantDetailView(DetailView):
+class PlantDetailView(generic.DetailView):
     """Display details about a specific plant."""
     model = Plant
     template_name = "my_garden/plant_detail.html"
     context_object_name = "plant"
 
 
-class PlantCreateView(LoginRequiredMixin, CreateView):
+class PlantCreateView(LoginRequiredMixin, generic.CreateView):
     """Allow users to suggest a new plant to the catalogue."""
     model = Plant
     template_name = "my_garden/plant_form.html"
@@ -52,7 +52,7 @@ class PlantCreateView(LoginRequiredMixin, CreateView):
 
 # GARDEN PLOT VIEWS
 
-class GardenPlotListView(LoginRequiredMixin, ListView):
+class GardenPlotListView(LoginRequiredMixin, generic.ListView):
     model = GardenPlot
     template_name = "my_garden/gardenplot_list.html"
     context_object_name = "plots"
@@ -63,7 +63,7 @@ class GardenPlotListView(LoginRequiredMixin, ListView):
             ).order_by("name")
 
 
-class GardenPlotCreateView(LoginRequiredMixin, CreateView):
+class GardenPlotCreateView(LoginRequiredMixin, generic.CreateView):
     model = GardenPlot
     fields = ["name", "description"]
     template_name = "my_garden/gardenplot_form.html"
@@ -74,7 +74,7 @@ class GardenPlotCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class GardenPlotUpdateView(LoginRequiredMixin, UpdateView):
+class GardenPlotUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = GardenPlot
     fields = ["name", "description"]
     template_name = "my_garden/gardenplot_form.html"
@@ -84,7 +84,7 @@ class GardenPlotUpdateView(LoginRequiredMixin, UpdateView):
         return GardenPlot.objects.filter(owner=self.request.user)
 
 
-class GardenPlotDeleteView(LoginRequiredMixin, DeleteView):
+class GardenPlotDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = GardenPlot
     template_name = "my_garden/gardenplot_confirm_delete.html"
     success_url = reverse_lazy("my_garden:gardenplot_list")
@@ -97,7 +97,7 @@ class GardenPlotDeleteView(LoginRequiredMixin, DeleteView):
 # PLANT LOG VIEWS
 
 
-class PlantLogListView(LoginRequiredMixin, ListView):
+class PlantLogListView(LoginRequiredMixin, generic.ListView):
     model = PlantLog
     template_name = "my_garden/plantlog_list.html"
     context_object_name = "logs"
@@ -109,7 +109,7 @@ class PlantLogListView(LoginRequiredMixin, ListView):
             .order_by("-date_planted", "-created_on")
 
 
-class PlantLogCreateView(LoginRequiredMixin, CreateView):
+class PlantLogCreateView(LoginRequiredMixin, generic.CreateView):
     model = PlantLog
     fields = ["plant", "plot", "date_planted",
               "date_harvested", "status", "notes"]
@@ -134,7 +134,7 @@ class PlantLogCreateView(LoginRequiredMixin, CreateView):
         return form
 
 
-class PlantLogUpdateView(LoginRequiredMixin, UpdateView):
+class PlantLogUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = PlantLog
     fields = ["plant", "plot", "date_planted",
               "date_harvested", "status", "notes"]
@@ -146,12 +146,13 @@ class PlantLogUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.fields["plot"].queryset = GardenPlot.objects\
-            .filter(owner=self.request.user).order_by("name")
+        form.fields["plot"].queryset = (
+            GardenPlot.objects.filter(owner=self.request.user).order_by("name")
+        )
         return form
 
 
-class PlantLogDeleteView(LoginRequiredMixin, DeleteView):
+class PlantLogDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = PlantLog
     template_name = "my_garden/plantlog_confirm_delete.html"
     success_url = reverse_lazy("my_garden:plantlog_list")
@@ -164,7 +165,7 @@ class PlantLogDeleteView(LoginRequiredMixin, DeleteView):
 # PLOT DETAIL VIEW
 
 
-class GardenPlotDetailView(LoginRequiredMixin, DetailView):
+class GardenPlotDetailView(LoginRequiredMixin, generic.DetailView):
     model = GardenPlot
     template_name = "my_garden/gardenplot_detail.html"
     context_object_name = "plot"
@@ -179,4 +180,33 @@ class GardenPlotDetailView(LoginRequiredMixin, DetailView):
             .select_related("plant", "plot")
             .order_by("-date_planted", "-created_on")
         )
+        return context
+    
+# END PLOT DETAIL VIEW
+
+# MY GARDEN DASHBOARD VIEW
+
+
+class MyGardenDashboardView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "my_garden/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        plots_qs = GardenPlot.objects.filter(owner=self.request.user)
+        logs_qs = (
+            PlantLog.objects.filter(owner=self.request.user)
+            .select_related("plant", "plot")
+            .order_by("-date_planted", "-created_on")
+        )
+
+        # context["plots"] = GardenPlot.objects.filter(owner=self.request.user)
+        context["plot_count"] = plots_qs.count()
+        context["log_count"] = logs_qs.count()
+        context["recent_plots"] = plots_qs.order_by("-created_on")[:5]
+        context["recent_logs"] = logs_qs[:5]
+        context["active_lgs"] = logs_qs.exclude(
+            status__in=['harvested', 'failed']
+            )[:5]
+
         return context

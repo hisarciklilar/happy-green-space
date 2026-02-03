@@ -1,0 +1,156 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h4 mb-1">My Garden Dashboard</h1>
+      <div class="text-muted">Quick overview and shortcuts</div>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="btn btn-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+      <a class="btn btn-outline-success" href="{% url 'my_garden:gardenplot_create' %}">+ Add plot</a>
+    </div>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Garden plots</div>
+          <div class="display-6">{{ plot_count }}</div>
+          <a href="{% url 'my_garden:gardenplot_list' %}" class="btn btn-sm btn-outline-secondary mt-2">View plots</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Plant logs</div>
+          <div class="display-6">{{ log_count }}</div>
+          <a href="{% url 'my_garden:plantlog_list' %}" class="btn btn-sm btn-outline-secondary mt-2">View logs</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Plant catalogue</div>
+          <div class="display-6">🌿</div>
+          <a href="{% url 'my_garden:plant_list' %}" class="btn btn-sm btn-outline-secondary mt-2">Browse plants</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+
+    <!-- Active logs -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 mb-0">Currently growing</h2>
+            <a class="small" href="{% url 'my_garden:plantlog_list' %}">See all plant logs</a>
+          </div>
+
+          {% if active_logs %}
+            <div class="list-group">
+              {% for log in active_logs %}
+                <div class="list-group-item">
+                  <div class="fw-bold">{{ log.plant.name }}</div>
+                  <div class="text-muted small">
+                    Status: {{ log.get_status_display }}
+                    {% if log.plot %}
+                      · Plot: <a href="{% url 'my_garden:gardenplot_detail' log.plot.pk %}">{{ log.plot.name }}</a>
+                    {% endif %}
+                    {% if log.date_planted %} · Planted: {{ log.date_planted }}{% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info mb-0">No active plant logs yet.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent logs -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 mb-0">Recent activity</h2>
+            <a class="small" href="{% url 'my_garden:plantlog_list' %}">See all</a>
+          </div>
+
+          {% if recent_logs %}
+            <div class="list-group">
+              {% for log in recent_logs %}
+                <div class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <div class="fw-bold">{{ log.plant.name }}</div>
+                      <div class="text-muted small">
+                        {{ log.get_status_display }}
+                        {% if log.plot %}
+                          · <a href="{% url 'my_garden:gardenplot_detail' log.plot.pk %}">{{ log.plot.name }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="text-muted small">
+                      {% if log.date_planted %}{{ log.date_planted }}{% else %}—{% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info mb-0">No logs yet. Add your first planting!</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent plots -->
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 mb-0">Recently created plots</h2>
+            <a class="small" href="{% url 'my_garden:gardenplot_list' %}">See all</a>
+          </div>
+
+          {% if recent_plots %}
+            <div class="list-group">
+              {% for plot in recent_plots %}
+                <div class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fw-bold">
+                        <a href="{% url 'my_garden:gardenplot_detail' plot.pk %}">{{ plot.name }}</a>
+                      </div>
+                      {% if plot.description %}
+                        <div class="text-muted small">{{ plot.description|linebreaksbr }}</div>
+                      {% endif %}
+                    </div>
+                    <div class="text-muted small">{{ plot.created_on|date:"j M Y" }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info mb-0">No plots yet. Create one to get started.</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

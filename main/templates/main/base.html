@@ -51,6 +51,8 @@
                          data-bs-toggle="dropdown" aria-expanded="false"> My Garden
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="myGardenDropdown">
+                        <li><a class="dropdown-item" href="{% url 'my_garden:dashboard' %}">Dashboard</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{% url 'my_garden:gardenplot_list' %}">Garden Plots</a></li>
                         <li><a class="dropdown-item" href="{% url 'my_garden:plantlog_list' %}">Plant Logs</a></li>
                         <li><hr class="dropdown-divider"></li>

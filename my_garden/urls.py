@@ -1,22 +1,26 @@
 from django.urls import path
 from .views import (
+    MyGardenDashboardView,
     PlantListView, PlantDetailView, PlantCreateView,
     GardenPlotListView, GardenPlotCreateView, GardenPlotUpdateView,
-    GardenPlotDeleteView,
-    PlantLogListView, PlantLogCreateView, PlantLogUpdateView, 
+    GardenPlotDeleteView, GardenPlotDetailView,
+    PlantLogListView, PlantLogCreateView, PlantLogUpdateView,
     PlantLogDeleteView,
-     GardenPlotDetailView,
 )
 
 app_name = "my_garden"
 
 urlpatterns = [
+     path("", MyGardenDashboardView.as_view(), name="dashboard"),
+
      path("plants/", PlantListView.as_view(), name="plant_list"),
      path("plants/new/", PlantCreateView.as_view(), name="plant_create"),
      path("plants/<int:pk>/", PlantDetailView.as_view(), name="plant_detail"),
 
      path("plots/", GardenPlotListView.as_view(),
          name="gardenplot_list"),
+     path("plots/<int:pk>/", GardenPlotDetailView.as_view(),
+          name="gardenplot_detail"),
      path("plots/new/", GardenPlotCreateView.as_view(),
          name="gardenplot_create"),
      path("plots/<int:pk>/edit/", GardenPlotUpdateView.as_view(),
@@ -32,7 +36,4 @@ urlpatterns = [
          name="plantlog_update"),
      path("logs/<int:pk>/delete/", PlantLogDeleteView.as_view(),
          name="plantlog_delete"),
-     
-     path("plots/<int:pk>/", GardenPlotDetailView.as_view(),
-          name="gardenplot_detail"),
 ]
