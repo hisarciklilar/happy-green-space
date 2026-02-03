@@ -22,7 +22,7 @@
 
   <div class="d-flex justify-content-between align-items-center mb-2">
     <h2 class="h5 mb-0">Plant logs in this plot</h2>
-    <a class="btn btn-success btn-sm" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+    <a class="btn btn-success btn-sm" href="{% url 'my_garden:plantlog_create' %}?plot={{ plot.pk }}">+ Add log</a>
   </div>
 
   {% if logs %}

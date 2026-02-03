@@ -124,6 +124,13 @@ class PlantLogCreateView(LoginRequiredMixin, CreateView):
         form = super().get_form(form_class)
         form.fields["plot"].queryset = GardenPlot.objects\
             .filter(owner=self.request.user).order_by("name")
+        plot_id = self.request.GET.get("plot")
+        if plot_id:
+            try:
+                form.fields["plot"].initial = GardenPlot.objects\
+                    .get(owner=self.request.user, pk=plot_id)
+            except GardenPlot.DoesNotExist:
+                pass
         return form
 
 
@@ -155,6 +162,8 @@ class PlantLogDeleteView(LoginRequiredMixin, DeleteView):
 # END PLANT LOG VIEWS
 
 # PLOT DETAIL VIEW
+
+
 class GardenPlotDetailView(LoginRequiredMixin, DetailView):
     model = GardenPlot
     template_name = "my_garden/gardenplot_detail.html"

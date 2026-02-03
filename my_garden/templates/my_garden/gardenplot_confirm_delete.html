@@ -13,7 +13,7 @@
   <form method="post">
     {% csrf_token %}
     <button class="btn btn-danger" type="submit">Yes, delete</button>
-    <a class="btn btn-outline-secondary" href="{% url 'my_garden:gardenplot_detail' object.pk %}">Cancel</a>
+    <a class="btn btn-outline-secondary" href="{% url 'my_garden:gardenplot_list' object.pk %}">Cancel</a>
   </form>
 </div>
 {% endblock %}

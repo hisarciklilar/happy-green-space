@@ -1,3 +1,9 @@
+---
+noteId: "190e9160010711f188468d2b0ac86562"
+tags: []
+
+---
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 # Happy Green Space
@@ -209,8 +215,8 @@ A good planting planning requires plot holders to make notes about what they pla
 
 ## Templates 
 
-Templates are organised within individual Django apps to maintain a clear seperation and transferability. 
-The core `main` app provides the base layot and statis pages, which are then extended by feature-specific apps. 
+Templates are organised within individual Django apps to maintain a clear separation and transferability. 
+The core `main` app provides the base layout and static pages, which are then extended by feature-specific apps. 
 
 ## Data Model
 
@@ -294,7 +300,8 @@ This space provides information about the gardening tasks that are recommended t
 | "Home" link |Takes user to home page | Clicked on "Home" at navbar | Home page loaded| Pass|
 | "About" link |Takes user to about page|Clicked on "About" at navbar|About page loaded|Pass|
 |"Forum" link |Takes user to forum page|Clicked on "Forum" at navbar|Forum page loaded| Pass|
-| ||||Pass|
+|"My Garden" dropdown |Appears on navigation bar for logged in users only| Accessed the homepage without logging in |My Garden dropdown on  navigation was was invisible | Pass|
+|"My Garden" dropdown |Appears on navigation bar for logged in users only| Accessed the homepage as a logged in user |My Garden dropdown on  navigation was was invisible with options to visit personal pages of plots and plant logs nd general pages of plant list and plant suggestion form  | Pass|
 
 #### Home Page
 
@@ -343,9 +350,16 @@ This space provides information about the gardening tasks that are recommended t
 | Plot detail form| User can add plot name and description to their garden/allotment space  | Created plots with definitions | Plot names and descriptions are saved; user directed to plot list page  |Pass  |
 |Plot details revealed to plot owner only | Only logged in users can see their own plot details  | Entered plot details for two different users and tried access to plot details | The details of plots are revealed only to plot owner  |Pass  |
 | Add plant log  | User cannot log plant if not logged in   | Used "add log" button when not logged in  |Page directed to login / sign up page  |Pass  |
-|Add plant log  |User can log plant to a plot they defined when logged in  |Used "add log" button when logged in  | User directed to plant log page |Pass  |
-|  |  |  |  |  |
-
+|Add plant log  |User can log plant to a plot they defined when logged in  |Used "add log" button when logged in  | User directed to plant log page |Pass|
+|Add plant lo on plot detail page|Add log button on plot detail page pre-selects the respective (visited) plot in the plant log form|Used "add log" button on plot detail page| User directed to plant log page where the relevant plot is pre-selected|Pass|
+|View plot list  |Logged in user can view a list of their plots |Visited "Garden Plots" from "My Garden" dropdown navbar item  | Directed to a page listing user's plots  |Pass|
+|View logged plant list  | Logged in user can view a list of their logged plants  |Visited "Plant Logs" from "My Garden" dropdown navbar item |Directed to a page listing user's logged plants |Pass|
+|View plantings in a plot |View all plantings in a particular plot through plot list page|Visited plot list page as a logged in user and visited the links attached to plot names | User directed to an information page listing details about the plot and the plantings in that plot|Pass|
+|View plantings in a plot |View all plantings in a particular plot through logged plant list page|Visited logged plants page as a logged in user and clicked on the links attached to plants listed |User directed to an information page on the plot that plant is located and the other plantings in that plot|Pass|
+|Edit/Delete plot entry (plot list page)|Logged in user can edit/delete their own plot details|Visited plot list page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
+|Edit/Delete plot entry (plot detail page)|Logged in user can edit/delete their own plot details|Visited plot detail page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
+|Edit/Delete plant logs (logged plant list page)|Logged in user can edit/delete their logged plants|Visited plant log page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
+|Edit/Delete plant logs (plot detail page)|Logged in user can edit/delete their logged plants|Visited plot detail page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
 
 ### Smoke Tests
 
