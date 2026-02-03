@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
-from .models import Plant, GardenPlot
+from .models import Plant, GardenPlot, PlantLog
 
 
 # PLANT VIEWS
@@ -93,3 +93,63 @@ class GardenPlotDeleteView(LoginRequiredMixin, DeleteView):
         return GardenPlot.objects.filter(owner=self.request.user)
 
 # END GARDEN PLOT VIEWS
+
+# PLANT LOG VIEWS
+
+
+class PlantLogListView(LoginRequiredMixin, ListView):
+    model = PlantLog
+    template_name = "my_garden/plantlog_list.html"
+    context_object_name = "logs"
+    ordering = ["-date_planted"]
+
+    def get_queryset(self):
+        return PlantLog.objects.filter(owner=self.request.user)\
+            .select_related("plant", "plot")\
+            .order_by("-date_planted", "-created_on")
+
+
+class PlantLogCreateView(LoginRequiredMixin, CreateView):
+    model = PlantLog
+    fields = ["plant", "plot", "date_planted",
+              "date_harvested", "status", "notes"]
+    template_name = "my_garden/plantlog_form.html"
+    success_url = reverse_lazy("my_garden:plantlog_list")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["plot"].queryset = GardenPlot.objects\
+            .filter(owner=self.request.user).order_by("name")
+        return form
+
+
+class PlantLogUpdateView(LoginRequiredMixin, UpdateView):
+    model = PlantLog
+    fields = ["plant", "plot", "date_planted",
+              "date_harvested", "status", "notes"]
+    template_name = "my_garden/plantlog_form.html"
+    success_url = reverse_lazy("my_garden:plantlog_list")
+
+    def get_queryset(self):
+        return PlantLog.objects.filter(owner=self.request.user)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["plot"].queryset = GardenPlot.objects\
+            .filter(owner=self.request.user).order_by("name")
+        return form
+
+
+class PlantLogDeleteView(LoginRequiredMixin, DeleteView):
+    model = PlantLog
+    template_name = "my_garden/plantlog_confirm_delete.html"
+    success_url = reverse_lazy("my_garden:plantlog_list")
+
+    def get_queryset(self):
+        return PlantLog.objects.filter(owner=self.request.user)
+
+# END PLANT LOG VIEWS

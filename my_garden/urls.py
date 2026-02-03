@@ -3,6 +3,8 @@ from .views import (
     PlantListView, PlantDetailView, PlantCreateView,
     GardenPlotListView, GardenPlotCreateView, GardenPlotUpdateView,
     GardenPlotDeleteView,
+    PlantLogListView, PlantLogCreateView, PlantLogUpdateView, 
+    PlantLogDeleteView
 )
 
 app_name = "my_garden"
@@ -20,4 +22,13 @@ urlpatterns = [
          name="gardenplot_update"),
     path("plots/<int:pk>/delete/", GardenPlotDeleteView.as_view(),
          name="gardenplot_delete"),
+
+    path("logs/", PlantLogListView.as_view(),
+         name="plantlog_list"),
+    path("logs/new/", PlantLogCreateView.as_view(),
+         name="plantlog_create"),
+    path("logs/<int:pk>/edit/", PlantLogUpdateView.as_view(),
+         name="plantlog_update"),
+    path("logs/<int:pk>/delete/", PlantLogDeleteView.as_view(),
+         name="plantlog_delete"),
 ]

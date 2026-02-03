@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">My Plant Logs</h1>
+    <a class="btn btn-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+  </div>
+
+  {% if logs %}
+    <div class="list-group">
+      {% for log in logs %}
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fw-bold">{{ log.plant.name }}</div>
+              <div class="text-muted small">
+                Status: {{ log.get_status_display }}
+                {% if log.plot %} · Plot:
+                  {{ log.plot.name }}
+                {% endif %}
+                {% if log.date_planted %} · Planted: {{ log.date_planted }}{% endif %}
+                {% if log.date_harvested %} · Harvested: {{ log.date_harvested }}{% endif %}
+              </div>
+              {% if log.notes %}
+                <div class="mt-2">{{ log.notes|linebreaksbr }}</div>
+              {% endif %}
+            </div>
+
+            <div class="ms-3 d-flex gap-2">
+              <a class="btn btn-outline-secondary btn-sm" href="{% url 'my_garden:plantlog_update' log.pk %}">Edit</a>
+              <a class="btn btn-outline-danger btn-sm" href="{% url 'my_garden:plantlog_delete' log.pk %}">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">No logs yet. Add your first planting!</div>
+  {% endif %}
+
+</div>
+{% endblock %}
