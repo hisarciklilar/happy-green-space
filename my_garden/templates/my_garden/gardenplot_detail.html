@@ -2,9 +2,27 @@
 {% block content %}
 <div class="container py-4">
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h4 mb-0">My Plant Logs</h1>
-    <a class="btn btn-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+  <div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+      <a class="btn btn-outline-secondary btn-sm mb-2" href="{% url 'my_garden:gardenplot_list' %}">
+        &laquo; Back to plots
+      </a>
+      <h1 class="h4 mb-1">{{ plot.name }}</h1>
+      {% if plot.description %}
+        <div class="text-muted">{{ plot.description|linebreaksbr }}</div>
+      {% endif %}
+      <div class="text-muted small mt-2">Created: {{ plot.created_on|date:"j M Y, H:i" }}</div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-secondary" href="{% url 'my_garden:gardenplot_update' plot.pk %}">Edit plot</a>
+      <a class="btn btn-outline-danger" href="{% url 'my_garden:gardenplot_delete' plot.pk %}">Delete</a>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h2 class="h5 mb-0">Plant logs in this plot</h2>
+    <a class="btn btn-success btn-sm" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
   </div>
 
   {% if logs %}
@@ -16,11 +34,6 @@
               <div class="fw-bold">{{ log.plant.name }}</div>
               <div class="text-muted small">
                 Status: {{ log.get_status_display }}
-                {% if log.plot %} · Plot:
-                <a href="{% url 'my_garden:gardenplot_detail' log.plot.pk %}">
-                  {{ log.plot.name }}
-                </a>
-                {% endif %}
                 {% if log.date_planted %} · Planted: {{ log.date_planted }}{% endif %}
                 {% if log.date_harvested %} · Harvested: {{ log.date_harvested }}{% endif %}
               </div>
@@ -38,7 +51,9 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="alert alert-info">No logs yet. Add your first planting!</div>
+    <div class="alert alert-info">
+      No plant logs in this plot yet.
+    </div>
   {% endif %}
 
 </div>

@@ -153,3 +153,21 @@ class PlantLogDeleteView(LoginRequiredMixin, DeleteView):
         return PlantLog.objects.filter(owner=self.request.user)
 
 # END PLANT LOG VIEWS
+
+# PLOT DETAIL VIEW
+class GardenPlotDetailView(LoginRequiredMixin, DetailView):
+    model = GardenPlot
+    template_name = "my_garden/gardenplot_detail.html"
+    context_object_name = "plot"
+
+    def get_queryset(self):
+        return GardenPlot.objects.filter(owner=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logs"] = (
+            PlantLog.objects.filter(owner=self.request.user, plot=self.object)
+            .select_related("plant", "plot")
+            .order_by("-date_planted", "-created_on")
+        )
+        return context
