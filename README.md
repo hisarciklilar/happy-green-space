@@ -407,9 +407,9 @@ This space provides information about the gardening tasks that are recommended t
 
 A complementary set of tests are applied to the project.
 
-### Smoke Tests
+### Python/Django Tests
 
-The following smoke tests are applied through `tests.py` located under each respective app.
+The following Python/Django tests are applied through `tests.py` located under each respective app. These tests can be run from the bash by `python manage.py test`.
 
 #### Forum Pages
 
@@ -501,6 +501,10 @@ The following smoke tests are applied through `tests.py` located under each resp
 |Edit/Delete plot entry (plot detail page)|Logged in user can edit/delete their own plot details|Visited plot detail page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
 |Edit/Delete plant logs (logged plant list page)|Logged in user can edit/delete their logged plants|Visited plant log page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
 |Edit/Delete plant logs (plot detail page)|Logged in user can edit/delete their logged plants|Visited plot detail page and used the edit/delete buttons to make changes|Edits and deletions were successfully implemented|Pass|
+
+### Javascript Jest Tests
+
+JavaScript tests were implemented using Jest with a `jsdom` environment to validate frontend behaviour. Javascript tests can be applied by running `npm test` after a `npm install` from the bash.
 
 ## Deploying the App on Heroku
 

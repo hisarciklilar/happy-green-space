@@ -28,6 +28,9 @@ staticfiles/
 static_root/
 .env             # If using dotenv for secrets
 
+# Node
+node_modules/
+
 # === OS / IDE files ===
 .DS_Store
 Thumbs.db

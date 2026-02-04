@@ -1,0 +1,24 @@
+{
+  "name": "happy-green-space",
+  "version": "1.0.0",
+  "description": "--- noteId: \"190e9160010711f188468d2b0ac86562\" tags: []",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hisarciklilar/happy-green-space.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hisarciklilar/happy-green-space/issues"
+  },
+  "homepage": "https://github.com/hisarciklilar/happy-green-space#readme",
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
+  }
+}
