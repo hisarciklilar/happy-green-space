@@ -44,7 +44,7 @@
           </p>
           <div class="mt-auto">
             <a class="btn btn-outline-success w-100" href="{% url 'forum:post_list' %}">
-              Go to Forum
+              Join the Garden Gossip!
             </a>
           </div>
         </div>
@@ -80,7 +80,7 @@
     </div>
     <div class="d-flex gap-2">
       <a class="btn btn-sm btn-outline-success" href="{% url 'my_garden:gardenplot_create' %}">+ Add plot</a>
-      <a class="btn btn-sm btn-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+      <a class="btn btn-sm btn-outline-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
     </div>
   </div>
   {% endif %}
