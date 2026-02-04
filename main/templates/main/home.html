@@ -1,10 +1,8 @@
 {% extends "main/base.html" %}
 {% block title %}Home | Happy Green Space {% endblock %}
 {% block content %}
-<!-- <h1>Welcome to Happy Green Space 🌱</h1>
-<p>Your growing community.</p> -->
 
-<div class="p-4 p-md-5 mb-4 bg-light rounded">
+  <div class="p-4 p-md-5 mb-4 bg-light rounded">
     <h1 class="display-6">Welcome to Happy Green Space</h1>
     <p class="lead mb-0">
       This is your growing gardening community. 
@@ -12,37 +10,80 @@
     </p>
   </div>
 
-  <div class="row g-3">
+  <div class="row g-3 mb-4">
+    <!-- My Garden -->
     <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="h5">My Garden</h2>
-          <p>Record plantings, notes, and yield.</p>
-          <a class="btn btn-success" href="#">Go to dashboard</a>
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center mb-2">
+            <span class="fs-4 me-2">🌱</span>
+            <h2 class="h6 mb-0">My Garden</h2>
+          </div>
+          <p class="text-muted small">
+            View your dashboard, plots, and plant logs
+          </p>
+          <div class="mt-auto">
+            <a class="btn btn-outline-success w-100" href="{% url 'my_garden:dashboard' %}">
+              Go to My Garden
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Forum -->
     <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="h5">Forum</h2>
-          <p>Ask questions and share advice.</p>
-          <a class="btn btn-outline-success" href="{% url 'forum:post_list' %}">Join the garden gossip!</a>
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center mb-2">
+            <span class="fs-4 me-2">💬</span>
+            <h2 class="h6 mb-0">Forum</h2>
+          </div>
+          <p class="text-muted small">
+            Ask questions, share updates, and connect with others
+          </p>
+          <div class="mt-auto">
+            <a class="btn btn-outline-success w-100" href="{% url 'forum:post_list' %}">
+              Go to Forum
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Tasks of the Month -->
     <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="h5">Tasks for this month</h2>
-          <p>Seasonal guidance for UK gardeners.</p>
-          <a class="btn btn-outline-secondary" href="{% url 'main:tasks_january' %}">View January tasks.</a>
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center mb-2">
+            <span class="fs-4 me-2">✅</span>
+            <h2 class="h6 mb-0">Tasks of the Month</h2>
+          </div>
+          <p class="text-muted small">
+            Seasonal guidance for UK gardeners
+          </p>
+          <div class="mt-auto">
+            <a class="btn btn-outline-success w-100" href="{% url 'main:tasks_january' %}">
+              View January tasks
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-{% endblock %}
+  {% if user.is_authenticated %}
+  <div class="alert alert-light border d-flex justify-content-between align-items-center">
+    <div>
+      <div class="fw-bold">Quick actions</div>
+      <div class="text-muted small">Add a plot or a planting log in one click.</div>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="btn btn-sm btn-outline-success" href="{% url 'my_garden:gardenplot_create' %}">+ Add plot</a>
+      <a class="btn btn-sm btn-success" href="{% url 'my_garden:plantlog_create' %}">+ Add log</a>
+    </div>
+  </div>
+  {% endif %}
 
+</div>
+{% endblock %}
