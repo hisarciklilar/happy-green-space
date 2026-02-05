@@ -639,6 +639,22 @@ Javascript tests can be applied by running `npm test` after a `npm install` from
 
 ![Test Screenshots](./assets/images/read_me/tests_combined.png)
 
+### Validation of html
+
+The W3C HTML Validator is used for the html coding of the homepage and the my garden dashboard. Both pages are without errors. <https://validator.w3.org/>
+
+![Test Screenshots: homepage html](./assets/images/read_me/homepage_html.png)
+
+![Test Screenshots: my garden dashboard html](./assets/images/read_me/my_garden_dashboard_html.png)
+
+### Validation of css
+
+The W3C CSS Validator is used for the css of the homepage and the my garden dashboard. Both pages are without errors. <https://jigsaw.w3.org/css-validator/>
+
+![Test Screenshots: homepage html](./assets/images/read_me/homepage_css.png)
+
+![Test Screenshots: my garden dashboard html](./assets/images/read_me/my_garden_dashboard_css.png)
+
 ## Deploying the App on Heroku
 
 ### In the local project folder:
