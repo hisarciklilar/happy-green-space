@@ -15,7 +15,7 @@ class AuthorRequiredMixin(UserPassesTestMixin):
         return post.author == self.request.user
 
 
-# POST VIEWS  
+# POST VIEWS
 
 class PostList(generic.ListView):
     model = Post
@@ -36,6 +36,7 @@ class PostDetail(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['replies'] = self.object.replies.all().order_by('created_on')
         return context
+
 
 class PostCreate(LoginRequiredMixin, generic.CreateView):
     model = Post
@@ -116,7 +117,7 @@ class ReplyUpdate(LoginRequiredMixin, AuthorRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return self.object.post.get_absolute_url()
-  
+ 
     def get_object(self, queryset = None):
         return get_object_or_404(Reply, pk=self.kwargs['pk'], author=self.request.user)
 

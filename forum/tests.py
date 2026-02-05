@@ -128,32 +128,38 @@ class PostCreateViewTests(ForumTestBase):
             'title': 'Duplicate Title',
             'content': 'Second post content.'
         })
-        post1 = Post.objects.get(title='Duplicate Title', content='First post content.')
-        post2 = Post.objects.get(title='Duplicate Title', content='Second post content.')
+        post1 = Post.objects.get(title='Duplicate Title',
+                                 content='First post content.')
+        post2 = Post.objects.get(title='Duplicate Title',
+                                 content='Second post content.')
         self.assertEqual(post1.slug, 'duplicate-title')
         self.assertEqual(post2.slug, 'duplicate-title-2')
 
 
 class PostUpdateViewTests(ForumTestBase):
     def test_post_update_view_redirects_if_not_logged_in(self):
-        response = self.client.get(reverse("forum:post_update", kwargs={'slug': self.post.slug}))
+        response = self.client.get(reverse("forum:post_update",
+                                           kwargs={'slug': self.post.slug}))
         self.assertEqual(response.status_code, 302)
         self.assertIn('login', response.url)
 
     def test_non_author_gets_404(self):
         self.login(self.replier)
-        response = self.client.get(reverse("forum:post_update", kwargs={'slug': self.post.slug}))
+        response = self.client.get(reverse("forum:post_update",
+                                           kwargs={'slug': self.post.slug}))
         self.assertEqual(response.status_code, 404)
-  
+
     def test_post_update_view_gets_200_for_author(self):
         self.login(self.user)
-        response = self.client.get(reverse("forum:post_update", kwargs={'slug': self.post.slug}))
+        response = self.client.get(reverse("forum:post_update",
+                                           kwargs={'slug': self.post.slug}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "forum/post_form.html")
 
     def test_post_update_via_view(self):
         self.login(self.user)
-        response = self.client.post(reverse("forum:post_update", kwargs={'slug': self.post.slug}), {
+        response = self.client.post(reverse("forum:post_update",
+                                            kwargs={'slug': self.post.slug}), {
             'title': 'Updated Test Post',
             'content': 'Updated content for the test post.'
         })
@@ -227,12 +233,12 @@ class ReplyUpdateViewTests(ForumTestBase):
         response = self.client.get(reverse("forum:reply_update", kwargs={'pk': self.reply.pk}))
         self.assertEqual(response.status_code, 302)
         self.assertIn('login', response.url)
-   
+ 
     def test_non_author_gets_404(self):
         self.login(self.user)
         response = self.client.get(reverse("forum:reply_update", kwargs={'pk': self.reply.pk}))
         self.assertEqual(response.status_code, 404)
-   
+ 
     def test_author_gets_200(self):
         self.login(self.replier)
         response = self.client.get(reverse("forum:reply_update", kwargs={'pk': self.reply.pk}))
@@ -252,12 +258,12 @@ class ReplyDeleteViewTests(ForumTestBase):
         response = self.client.get(reverse("forum:reply_delete", kwargs={'pk': self.reply.pk}))
         self.assertEqual(response.status_code, 302)
         self.assertIn('login', response.url)
-   
+
     def test_non_author_gets_404(self):
         self.login(self.user)
         response = self.client.get(reverse("forum:reply_delete", kwargs={'pk': self.reply.pk}))
         self.assertEqual(response.status_code, 404)
-   
+  
     def test_author_gets_200(self):
         self.login(self.replier)
         response = self.client.get(reverse("forum:reply_delete", kwargs={'pk': self.reply.pk}))

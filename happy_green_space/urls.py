@@ -22,4 +22,3 @@ urlpatterns = [
     path('forum/', include('forum.urls'), name='forum-url'),
     path('my-garden/', include('my_garden.urls'), name='my-garden-url'),
 ]
-

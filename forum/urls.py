@@ -9,7 +9,7 @@ from .views import (
     ReplyUpdate,
     ReplyCreate 
 )
-#from . import views
+
 app_name = 'forum'
 
 urlpatterns = [
@@ -21,5 +21,4 @@ urlpatterns = [
     path('reply/<int:pk>/edit/', ReplyUpdate.as_view(), name='reply_update'),
     path('reply/<int:pk>/delete/', ReplyDelete.as_view(), name='reply_delete'),
     path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
-
 ]
