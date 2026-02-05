@@ -20,6 +20,9 @@ Happy Green Space is a web-based platform that aims to bring together a set of f
 
 With all these functionalities, the platform target to function as a home page for allotment users.
 
+![Homepage](./assets/images/read_me/homepage_combined.png)
+
+
 ## App's Location
 
 - Happy Green Space Live Link:
@@ -200,7 +203,7 @@ The `my_garden` app allows users to create and list entries at the platform and 
 
 Templates are organised within individual Django apps to maintain a clear separation and transferability.
 The core `main` app provides the base layout and static pages, which are then extended by feature-specific apps.
-The project heavilty relies on class-based views. 
+The project heavily relies on class-based views. 
 
 ### Main
 
@@ -210,6 +213,8 @@ The static pages hosted in the main app include:
 - home : This is the home page for the platform. It provides brief information about the functionality of the platform and provides links to other pages and apps.  
 - about : Provides brief information about the Happy Green Space platform
 - tasks for the month: this page currently provides information about the nature in January and gardening tasks to undertake in this month. It is currently provided as a placeholder for further development. Links for each month will be added at later stages. This space can also later be converted into blog type model where users can contribute with blogs on monthly tasks or community activities.  
+
+![Homepage](./assets/images/read_me/homepage.png)
 
 ### Forum
 
@@ -221,6 +226,8 @@ The templates in the app include:
 
 - `Post Views`: post_list, post_detail, post_form, post_confirm_delete
 - `Reply Views`: reply_form, reply_confirm_delete
+
+![Forum Pages](./assets/images/read_me/forum_combined.png)
 
 ### My Garden
 
@@ -235,6 +242,14 @@ The templates in the app include:
 - `PlantLog Views`: plantlog_form, plantlog_list, plantlog_confirm_delete
 - `GardenPlotDetail View` (combines information from `GardenPlot` and `PlantLog` models): gardenplot_detail
 - `MyGardenDashboard View`: dashboard
+
+![Plant Catalogue](./assets/images/read_me/plant_catalogue_combined.png)
+
+![My Garden Dashboard](./assets/images/read_me/my_garden_dashboard.png)
+
+![Planter Detail and Plant Logs](./assets/images/read_me/planter_plant_combined.png)
+
+
 
 ## Data Model
 
@@ -524,13 +539,7 @@ Javascript tests can be applied by running `npm test` after a `npm install` from
 |Confirmation dialog before delete action |Confirmation of delete action requested from the logged in user|As a logged in user, attempted to delete an existing garden plot / plant log |Delete confirmation page loads for confirmation of action with a possibility to cancel| Pass|
 |JavaScript / HTML5 prevents submission of empty required fields|User cannot submit form unless all required fields are populated|Attempted to submit forms (add plant, add post, add reply) leaving a required field empty | Browser validation message warns user to fill the required field; form does not submit |Pass|
 
-![Logout Confirm](./assets/images/read_me/js_logout_confirm.png)
-
-![Delete Plant Confirm](./assets/images/read_me/delete_plant_confirm.png)
-
-![Delete Reply Confirm](./assets/images/read_me/delete_reply_confirm.png)
-
-![Empty Form Field Warning](./assets/images/read_me/empty_form_field_warning.png)
+![Test Screenshots](./assets/images/read_me/tests_combined.png)
 
 ## Deploying the App on Heroku
 
