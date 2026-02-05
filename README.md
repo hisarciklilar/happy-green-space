@@ -242,7 +242,7 @@ The Django Database Structure consists of the `my_garden` and `forum` applicatio
 
 The Entity Relationship Diagram below demonstrates this.
 
-![](./assets/images/read_me/data_model.png)
+![Data Model](./assets/images/read_me/data_model.png)
 
 ### Database Relationships
 
@@ -377,11 +377,11 @@ In this version of the project, any logged in user can create an entry for a pla
 
 Plot holders usually experiment with planting a variety fruit, herb or vegetables but sometimes they may not know enough about different plants, in particular when they are newbies. WikiPlant pages will allow users to search for plants and obtain information about when to plant, where, what harvest to expect, etc.
 
-### My garden
+### My garden Visual Representation
 
 A good planting planning requires plot holders to make notes about what they planted and where. These notes are likely to get lost or take time to organize. Markings left on the planting spots usually get lost too due to rain, wind, or some other external factors. The platform may provide plot holders with a digital representation of their allotment space where they can mark on the digital allotment map what plants are planted, where.
 
-#### Plant Model
+### Plant Model Admin Approval
 
 The `Plant` model provides a global plant list and details, available to anybody who visits the site. Currently any logged in user can add to the plant database, but they do not have the right to edit or delete these entries. In the later versions, changes will be made by adding a mechanism where the plant suggestions made by the users will need to be approved by the admin. Users will be able to edit/delete entries until the approval of the admin while no changes can be made after approval. In this modified version, only the approved plants will be listed on the plants page while the users will be able to a temporary list that they contributed (giving them the option to edit/delete) until admin approval.
 
@@ -394,7 +394,7 @@ This space provides information about the gardening tasks that are recommended t
 - Analysis of the most popular plants planted by the users in a location
 - Analysis of the success rates of plants planted by users in a location
 
-## Small to-do items
+## Small Tasks to complete
 
 - Add a filter in "currently growing" section of the my_garden dashboard. It currently lists all planting when user visits "see all plant logs" link.
 - Add a check when users attempt to register under the same user name
@@ -504,7 +504,33 @@ The following Python/Django tests are applied through `tests.py` located under e
 
 ### Javascript Jest Tests
 
-JavaScript tests were implemented using Jest with a `jsdom` environment to validate frontend behaviour. Javascript tests can be applied by running `npm test` after a `npm install` from the bash.
+The following JavaScript tests were implemented using Jest with a `jsdom` environment. 
+
+- A smoke test for correct Jest configuration
+- Functioning of the JS-written `slugify`. `post_detail` pages in the project rely on slugs created based on post name.
+- Functioning of the `attachConfirm`, which may be used for confirmations of edit/delete in forms
+- Functioning of the logout confirm, which is is integrated into the user's logout from the platform. 
+  
+Javascript tests can be applied by running `npm test` after a `npm install` from the bash.
+
+### Javascript Manual Tests
+
+| Feature being tested | Expected Outcome | Testing Performed | Actual Outcome | Result (Pass or fail) |
+| -------------------- | ---------------- | ----------------- | -------------- | --------------------- |
+|Navbar toggle | Responsive navbar collapses on small screens |Opened the site in a browser and resized the window to mobile width |Toggle bar replaced the menu items on navigation var | Pass|
+|Navbar toggle | Responsive navbar collapses on small screens |Opened the site  on a mobile device |Toggle bar was visible on the top of the screen | Pass|
+|Navbar toggle button expand | Toggle bar expands to list menu items | Clicked the navbar toggle (hamburger icon) when on a small screen | The navbar toggle expanded to list menu items |Pass|
+|Confirmation dialog before delete action |Confirmation of delete action requested from the logged in user | As a logged in user, attempted to delete an existing post / reply |Delete confirmation page loads for confirmation of action with a possibility to cancel| Pass|
+|Confirmation dialog before delete action |Confirmation of delete action requested from the logged in user|As a logged in user, attempted to delete an existing garden plot / plant log |Delete confirmation page loads for confirmation of action with a possibility to cancel| Pass|
+|JavaScript / HTML5 prevents submission of empty required fields|User cannot submit form unless all required fields are populated|Attempted to submit forms (add plant, add post, add reply) leaving a required field empty | Browser validation message warns user to fill the required field; form does not submit |Pass|
+
+![Logout Confirm](./assets/images/read_me/js_logout_confirm.png)
+
+![Delete Plant Confirm](./assets/images/read_me/delete_plant_confirm.png)
+
+![Delete Reply Confirm](./assets/images/read_me/delete_reply_confirm.png)
+
+![Empty Form Field Warning](./assets/images/read_me/empty_form_field_warning.png)
 
 ## Deploying the App on Heroku
 
@@ -563,7 +589,7 @@ This project serves static assets (CSS, images) using Django’s staticfiles sys
 - Important rules:
   - `staticfiles/` is generated output of collecting static files. Do NOT edit files inside it
   - Add this folder to the `.gitignore`
-  - Ensure the Heroku config var `DISABLE_COLLECTSTATIC` is not enabled at later stages of project. Otherwise, static assets will not be collected and served correctly.
+  - Ensure the Heroku config var `DISABLE_COLLECTSTATIC` is not enabled at later stages of project. Otherwise, static assets will not be collected and served correctly. You may check this with `heroku config --app happy-green-space`
   - In CSS, prefer relative paths for images (e.g. `url("../images/leaves.png")`) to avoid issues in local development and production.
 
 ## Creating a Fork
