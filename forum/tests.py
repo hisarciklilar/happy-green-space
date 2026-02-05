@@ -144,7 +144,7 @@ class PostUpdateViewTests(ForumTestBase):
         self.login(self.replier)
         response = self.client.get(reverse("forum:post_update", kwargs={'slug': self.post.slug}))
         self.assertEqual(response.status_code, 404)
-   
+  
     def test_post_update_view_gets_200_for_author(self):
         self.login(self.user)
         response = self.client.get(reverse("forum:post_update", kwargs={'slug': self.post.slug}))

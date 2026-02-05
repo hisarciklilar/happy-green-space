@@ -426,19 +426,117 @@ A complementary set of tests are applied to the project.
 
 The following Python/Django tests are applied through `tests.py` located under each respective app. These tests can be run from the bash by `python manage.py test`.
 
-#### Forum Pages
-
-- Post Model tests
-- Reply Model tests
-- Expected URLs exist and return a 200 status code
-- The correct template names are used
-
 #### Main Pages
 
 - Expected URLs exist and return a 200 status code
 - URL names work and return a 200 status code
 - The correct template names are used
 - URL patterns resolve to the intended view functions
+
+#### Forum Pages (Post and Reply Models)
+
+**Model tests** 
+
+*Post model*
+
+- Post creation: verifies that a Post is created with the correct title, slug, content, and author.
+
+*Reply model*
+
+- Reply creation: verifies that a Reply is correctly linked to its author and parent post.
+
+**Post list view tests**
+
+- Post list view returns 200: verifies the forum post list page loads successfully.
+- Correct template used: ensures `forum/post_list.html` is rendered.
+- Existing post displayed: verifies that an existing post title appears on the page.
+
+**Post detail view tests**
+
+- Post detail view returns 200: verifies a valid post detail page loads successfully.
+- Correct template used: ensures forum/post_detail.html is rendered.
+- Post content displayed: verifies the post body is visible on the page.
+- Replies displayed: verifies replies associated with the post are shown.
+- Invalid slug returns 404: ensures non-existent posts return a 404 response.
+
+**Post creation view tests**
+
+- Anonymous users redirected: verifies unauthenticated users are redirected to login.
+- Authenticated users can access form: verifies logged-in users receive HTTP 200 and the correct template.
+- Post creation via view: verifies a new post is created with correct content, author, and auto-generated slug.
+- Duplicate title handling: verifies unique slugs are generated when multiple posts share the same title.
+Post update view tests
+- Anonymous users redirected: verifies unauthenticated users cannot access the update view.
+- Non-author denied access: verifies non-authors receive a 404 response.
+- Author access allowed: verifies post authors can access the update form.
+- Post update via view: verifies post title, content, and slug are correctly updated.
+
+**Post delete view tests**
+- Anonymous users redirected: verifies unauthenticated users cannot access delete view.
+- Non-author denied access: verifies non-authors receive a 404 response.
+- Author access allowed: verifies authors can access the delete confirmation page.
+- Post deletion: verifies deleting a post removes it from the database.
+- Redirect after deletion: verifies successful deletion redirects to the post list.
+
+**Reply creation view tests**
+
+- Anonymous users redirected: verifies unauthenticated users cannot access reply creation.
+- Authenticated users can access form: verifies logged-in users receive HTTP 200 and correct template.
+- Reply creation via view: verifies a logged-in user can create a reply linked to the correct post.
+- Redirect after creation: verifies reply creation redirects to the related post detail page.
+- Reply update view tests
+- Anonymous users redirected: verifies unauthenticated users cannot access reply update.
+- Non-author denied access: verifies non-authors receive a 404 response.
+- Author access allowed: verifies reply authors can access the update form.
+- Redirect after update: verifies successful update redirects to the parent post detail page.
+
+**Reply delete view tests**
+
+- Anonymous users redirected: verifies unauthenticated users cannot access reply deletion.
+- Non-author denied access: verifies non-authors receive a 404 response.
+- Author access allowed: verifies reply authors can access the delete confirmation page.
+- Reply deletion: verifies deleting a reply removes it from the database.
+- Redirect after deletion: verifies successful deletion redirects to the related post detail page.
+
+#### My Garden Pages (Plant, GardenPlot, PlantLog Models)
+
+**URL routing tests (MyGardenURLTests)**
+
+- Dashboard URL resolves: checks `my_garden:dashboard` reverses and resolves to a valid view.
+- Plant list URL resolves: checks `my_garden:plant_list` reverses and resolves to a valid view.
+- Plant detail URL resolves: creates a Plant and checks `my_garden:plant_detail` resolves to `PlantDetailView`.
+- Garden plot list URL resolves: checks the garden plot list route resolves.
+- Garden plot detail URL resolves: checks the garden plot detail route resolves.
+- Plant log list URL resolves: checks the plant log list route resolves.
+- Plant log detail URL resolves: checks the plant log detail route resolves.
+
+**Model tests (MyGardenModelTests)**
+
+- Plant `__str__`: verifies `Plant` string representation returns the plant name.
+- GardenPlot `__str__`: verifies `GardenPlot` string representation includes the plot name and owner username.
+- GardenPlot unique per owner constraint: verifies two different users can have the same plot name, but the same user cannot create duplicate plot names (raises `IntegrityError`).
+- PlantLog `__str__`: verifies PlantLog string representation includes plant name, owner username, and status.
+
+**View and access-control tests (MyGardenViewTests)**
+
+*Authentication smoke tests*
+
+- Dashboard redirects when logged out: verifies unauthenticated users are redirected to login.
+- Garden plot list redirects when logged out: verifies unauthenticated users are redirected to login.
+- Plant log list redirects when logged out: verifies unauthenticated users are redirected to login.
+- Dashboard loads when logged in: verifies authenticated users can access dashboard (HTTP 200).
+
+*Public plant pages*
+
+- Plant list loads: verifies plant list page returns 200 and includes the plant name (“Rosemary”).
+- Plant detail loads: verifies plant detail page returns 200 and includes the plant name (“Rosemary”).
+
+*Ownership filtering & permissions*
+
+- Plot list shows only the logged-in user’s plots: verifies Alice sees “Alice Plot” but not “Bob Plot”.
+- Log list shows only the logged-in user’s logs: verifies Alice sees her log notes but not Bob's.
+- Plot detail denies access to another user’s plot: verifies Alice cannot access Bob's plot detail (403 or 404).
+- Log update denies access to another user’s log: verifies Alice cannot access Bob's log update page (403 or 404).
 
 ### Manual Tests
 

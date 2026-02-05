@@ -40,7 +40,9 @@ class MainUrlAccessibleTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_tasks_january_page_url(self):
-        response = self.client.get("/tasks_january/")
+        response = self.client.get(
+            reverse("main:tasks_january")
+            )
         self.assertEqual(response.status_code, 200)
 
 
@@ -55,4 +57,4 @@ class MainUrlResolvesTests(TestCase):
 
     def test_tasks_january_page_resolves(self):
         url = reverse("main:tasks_january")
-        self.assertEqual(url, "/tasks_january/")
+        self.assertEqual(url, "/tasks-january/")
